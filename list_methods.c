@@ -6,7 +6,7 @@
 /*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 17:37:53 by rthai             #+#    #+#             */
-/*   Updated: 2019/11/22 20:38:30 by rthai            ###   ########.fr       */
+/*   Updated: 2019/11/22 21:22:45 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	my_copy(t_room *in, t_room *out)
 t_lem_list		*lst_create(int index, t_room *room)
 {
 	t_lem_list	*new;
+	
 	
 	new = (t_lem_list*)malloc(sizeof(t_lem_list));
 	new->index = index;
