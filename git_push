@@ -1,0 +1,5 @@
+i!/bin/sh 
+find . -name ".DS_Store" -exec rm -rf {}
+git add .
+git commit -m "$1"
+git push 
