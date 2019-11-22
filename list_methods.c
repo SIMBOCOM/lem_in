@@ -6,7 +6,7 @@
 /*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 17:37:53 by rthai             #+#    #+#             */
-/*   Updated: 2019/11/22 21:22:45 by rthai            ###   ########.fr       */
+/*   Updated: 2019/11/22 21:26:35 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ void	my_copy(t_room *in, t_room *out)
 {
 	in->name = out->name;
 	in->x = out->x;
-	in->y = out->y;
-	
+	in->y = out->y;	
 }
 
 t_lem_list		*lst_create(int index, t_room *room)
