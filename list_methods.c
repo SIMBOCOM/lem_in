@@ -23,7 +23,6 @@ t_lem_list		*lst_create(int index, t_room *room)
 {
 	t_lem_list	*new;
 	
-	
 	new = (t_lem_list*)malloc(sizeof(t_lem_list));
 	new->index = index;
 	new->next = NULL;

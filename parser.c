@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: flogan <flogan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:42:31 by rthai             #+#    #+#             */
-/*   Updated: 2019/11/22 21:04:16 by rthai            ###   ########.fr       */
+/*   Updated: 2019/11/24 14:29:06 by flogan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,31 +57,18 @@ void	parser_lem(t_total_data *data)
 {
 	char	*str;
 	int		i;
+	int		flag[2];
 
+	flag[0] = 0;
+	flag[1] = 0;
 	str = 0;
 	i = 0;
 	get_next_line(0, &str);
 	data->numb_ants = ft_atoi(str);
-	// ft_printf("%d", data->numb_ants);
 	free(str);
 	while (get_next_line(0, &str))
 	{
-		// ft_printf("%s\n", str);
-		if (ft_strstr(str, "##start"))
-			data->start = i + 1;
-		if (ft_strstr(str, "##end"))
-			data->start = i + 1;
-		if (ft_strchr(str, '-'))
-		{
-			if (!data->matrix)
-				data->size_matrix = i;
-			parser_links(data, str);
-		}
-		else
-			if (!ft_strchr(str, '#'))
-				parser_room(data, str, i);
-		free(str);
-		// ft_printf("%s\n", "lol");
+		valid(str, flag, data, &i);
 		i++;
 	}
 	print_matrix(data);
@@ -92,7 +79,6 @@ void	create_matrix(int ***matrix, int n)
 	int i;
 
 	i = 0;
-	ft_printf("%d\n", n);
 	if (!(*matrix = malloc(sizeof(int*) * n)))
 		print_error(E_MALLOC);
 	while (i < n)
@@ -100,28 +86,27 @@ void	create_matrix(int ***matrix, int n)
 		if (!((*matrix)[i] = malloc(sizeof(int) * n)))
 			print_error(E_MALLOC);
 		ft_bzero((*matrix)[i], n * sizeof(int));
-		// ft_printf("%d", )
 		i++;
 	}
 	ft_printf("%d\n", 2);
 }
 
-void	parser_links(t_total_data *data, char *str)
-{
-	int		i;
-	char	*tmp;
+// void	parser_links(t_total_data *data, char *str)
+// {
+// 	int		i;
+// 	char	*tmp;
 
-	ft_printf("%d\n", 6);
-	i = 0;
-	if (data->matrix == NULL)
-		create_matrix(&(data->matrix), data->size_matrix);
-	tmp = ft_strchr(str, '-');
-	*tmp = 0;
-	tmp++;
+// 	ft_printf("%d\n", 6);
+// 	i = 0;
+// 	if (data->matrix == NULL)
+// 		create_matrix(&(data->matrix), data->size_matrix);
+// 	tmp = ft_strchr(str, '-');
+// 	*tmp = 0;
+// 	tmp++;
 
-	// ft_printf("lol = %d\n", search_room(data->hash_tab + hash_sum(tmp), tmp));
-	// ft_printf("lol = %d\n", search_room(data->hash_tab + hash_sum(str), str));
-	data->matrix[search_room(data->hash_tab + hash_sum(tmp), tmp)][search_room(data->hash_tab + hash_sum(str), str)] = 1;
-	data->matrix[search_room(data->hash_tab + hash_sum(str), str)][search_room(data->hash_tab + hash_sum(tmp), tmp)] = 1;
-	ft_printf("%d\n", 5);
-}
+// 	// ft_printf("lol = %d\n", search_room(data->hash_tab + hash_sum(tmp), tmp));
+// 	// ft_printf("lol = %d\n", search_room(data->hash_tab + hash_sum(str), str));
+// 	data->matrix[search_room(data->hash_tab + hash_sum(tmp), tmp)][search_room(data->hash_tab + hash_sum(str), str)] = 1;
+// 	data->matrix[search_room(data->hash_tab + hash_sum(str), str)][search_room(data->hash_tab + hash_sum(tmp), tmp)] = 1;
+// 	ft_printf("%d\n", 5);
+// }
