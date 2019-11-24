@@ -16,13 +16,12 @@ void	my_copy(t_room *in, t_room *out)
 {
 	in->name = out->name;
 	in->x = out->x;
-	in->y = out->y;	
+	in->y = out->y;
 }
 
 t_lem_list		*lst_create(int index, t_room *room)
 {
 	t_lem_list	*new;
-	
 	
 	new = (t_lem_list*)malloc(sizeof(t_lem_list));
 	new->index = index;
