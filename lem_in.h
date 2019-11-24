@@ -6,7 +6,7 @@
 /*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 14:49:15 by rthai             #+#    #+#             */
-/*   Updated: 2019/11/22 20:40:35 by rthai            ###   ########.fr       */
+/*   Updated: 2019/11/24 16:23:42 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ typedef struct	s_total_data
 	int		start;
 	int		end;
 }				t_total_data;
+
+typedef struct	s_top_djks
+{
+	int		distance;
+	int		index_parent;
+}				t_top_djks;
+
 
 void		parser_lem(t_total_data *data);
 void	parser_links(t_total_data *data, char *str);
