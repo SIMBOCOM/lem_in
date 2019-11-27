@@ -64,11 +64,12 @@ int		bypass(t_total_data *data, t_top_djks djks[data->size_matrix], int start, i
 	{
 		if (i == start)
 			continue;
-		if (data->matrix[start][i] == path && djks[i].visit == visit && djks[start].distance + 1 < djks[i].distance)
+		else if (data->matrix[start][i] == path && djks[i].visit == visit && djks[start].distance + 1 < djks[i].distance)
 		{
 			djks[i].distance = djks[start].distance + 1;
 			djks[i].index_parent = start;
 		}
+		//ft_printf("true %d   %d\n", data->matrix[start][i], djks[i].visit == visit);
 	}
 	i = -1;
 	while (++i < data->size_matrix)
@@ -109,10 +110,7 @@ void	dijkstra(t_total_data *data)
 		visit = !visit;
 		i = -1;
 		while (++i < data->size_matrix)
-		{
 			djks[i].distance = INT_MAX;
-			djks[i].index_parent = -1;
-		}
 		djks[data->start].distance = 0;
 		res = bypass(data, djks, data->start, visit, path);
 		if (res)
@@ -120,7 +118,24 @@ void	dijkstra(t_total_data *data)
 			write(1, "\n\n", 2);
 			print_path(data, djks, path);
 		}
-		if (get_cross(data))
-			path = -path;
+		get_cross(data);
+	}
+	res = 1;
+	path = -path;
+	while (res)
+	{
+		ft_printf("HHHHHH\n");
+		i = -1;
+		while (++i < data->size_matrix)
+			djks[i].distance = INT_MAX;
+		djks[data->start].distance = 0;
+		res = bypass(data, djks, data->start, visit, path);
+		//ft_printf("visit = %d\n",path);
+		if (res)
+		{
+			write(1, "\n\n", 2);
+			print_path(data, djks, path);
+		}
+		visit = !visit;
 	}
 }
