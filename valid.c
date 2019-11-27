@@ -21,21 +21,19 @@ void     valid(char *str, int flag[2], t_total_data *data, int *i)
 {
 	if (!ft_strlen(str))
 		print_error(E_NO_VALID);
-	if (!ft_strcmp(str, "##start\n"))
+	if (!ft_strcmp(str, "##start"))
 	{
+		//write(1, "FFFF\n", 5);
 		if (flag[0])
-		{
-			ft_printf("PZDC");
-			print_error(E_START);
-		}
-		data->start = *i + 1;
+			ft_printf("flag  %d\n", flag[0]);
+		data->start = *i;
 		flag[0] = 1;
 	}
-	if (!ft_strcmp(str, "##end\n"))
+	if (!ft_strcmp(str, "##end"))
 	{
 		if (flag[1])
 			print_error(E_END);
-		data->end = *i + 1;
+		data->end = *i;
 		flag[1] = 1;
 	}
 	if (ft_strchr(str, '-'))
@@ -44,8 +42,10 @@ void     valid(char *str, int flag[2], t_total_data *data, int *i)
 			data->size_matrix = *i;
 		parse_links(data, str);
 	}
-	else
-		if (!ft_strchr(str, '#'))
-			parser_room(data, str, *i);
+	else if (!ft_strchr(str, '#'))
+	{
+		parser_room(data, str, *i);
+		(*i)++;
+	}
 	free(str);
 }

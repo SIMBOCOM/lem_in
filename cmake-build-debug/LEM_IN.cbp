@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="LEM_IN"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/flogan/Desktop/LEM_IN/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/flogan/Desktop/LEM_IN/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/flogan/Desktop/LEM_IN/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="LEM_IN">
+				<Option output="/Users/flogan/Desktop/LEM_IN/cmake-build-debug/LEM_IN" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/flogan/Desktop/LEM_IN/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/flogan/Desktop/LEM_IN/."/>
+					<Add directory="/Users/flogan/Desktop/LEM_IN/ft_printf/include"/>
+					<Add directory="/Users/flogan/Desktop/LEM_IN/ft_printf/libft"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 LEM_IN"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="LEM_IN/fast">
+				<Option output="/Users/flogan/Desktop/LEM_IN/cmake-build-debug/LEM_IN" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/flogan/Desktop/LEM_IN/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/flogan/Desktop/LEM_IN/."/>
+					<Add directory="/Users/flogan/Desktop/LEM_IN/ft_printf/include"/>
+					<Add directory="/Users/flogan/Desktop/LEM_IN/ft_printf/libft"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 LEM_IN/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/LEM_IN/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/djkstra.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/ft_printf/convert_float_to_str.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/ft_printf/ft_printf.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/ft_printf/help_function_float.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/ft_printf/help_function_parsers.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/ft_printf/long_arithmetic.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/ft_printf/parsers.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/ft_printf/parsers_printf.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/ft_printf/print_float.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/include/ft_printf.h">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_atoi.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_bzero.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_isalnum.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_isalpha.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_isascii.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_isdigit.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_islower.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_isprint.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_isspace.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_isupper.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_itoa.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_lstadd.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_lstdel.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_lstdelone.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_lstiter.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_lstmap.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_lstnew.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_memalloc.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_memccpy.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_memchr.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_memcmp.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_memcpy.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_memdel.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_memmove.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_memset.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_putchar.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_putchar_fd.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_putendl.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_putendl_fd.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_putnbr.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_putnbr_fd.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_putstr.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_putstr_fd.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strcat.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strchr.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strclr.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strcmp.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strcpy.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strdel.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strdup.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strequ.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_striter.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_striteri.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strjoin.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strlcat.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strlen.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strlowcase.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strmap.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strmapi.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strncat.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strncmp.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strncpy.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strnequ.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strnew.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strnstr.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strrchr.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strsplit.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strstr.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strsub.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strtrim.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_strupcase.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_tolower.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/ft_toupper.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/get_next_line.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/get_next_line.h">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/ft_printf/libft/libft.h">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/hash_table.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/lem_in.h">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/list_methods.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/main.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/parser.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/valid.c">
+			<Option target="LEM_IN"/>
+		</Unit>
+		<Unit filename="/Users/flogan/Desktop/LEM_IN/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: flogan <flogan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 19:41:01 by rthai             #+#    #+#             */
-/*   Updated: 2019/11/24 19:41:04 by rthai            ###   ########.fr       */
+/*   Updated: 2019/11/25 19:04:54 by flogan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct	s_top_djks
 {
 	int		distance;
 	int		index_parent;
+	int		visit;
 }				t_top_djks;
 
 
@@ -65,5 +66,7 @@ void		print_error(int id);
 void		create_matrix(int ***matrix, int n);
 void		parser_room(t_total_data *data, char *str, int index);
 void		valid(char *str, int flag[2], t_total_data *data, int *i);
+void		dijkstra(t_total_data *data);
+t_lem_list	*get_array_room(t_total_data *data, t_lem_list arr[data->size_matrix]);
 
 #endif

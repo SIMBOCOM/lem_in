@@ -37,6 +37,54 @@ void	print_matrix(t_total_data *data)
 	}
 }
 
+t_lem_list	*get_array_room(t_total_data *data, t_lem_list arr[data->size_matrix])
+{
+	int i;
+	t_lem_list *tmp;
+
+	i = -1;
+	while (++i < 128)
+	{
+		if (data->hash_tab[i])
+		{
+			arr[data->hash_tab[i]->index] = *data->hash_tab[i];
+			tmp = data->hash_tab[i];
+			while (tmp->next)
+			{
+				tmp = tmp->next;
+				arr[tmp->index] = *tmp;
+			}
+		}
+	}
+	return (arr);
+}
+
+//void	print_matrix(t_total_data *data)
+//{
+//	int i;
+//	int j;
+//	t_lem_list arr[data->size_matrix];
+//
+//	i = 0;
+//	while (i < data->size_matrix)
+//	{
+//		j = 0;
+//		while (j < data->size_matrix)
+//		{
+//			ft_printf("%d ", data->matrix[i][j]);
+//			j++;
+//		}
+//		ft_printf("\n");
+//		i++;
+//	}
+//	get_array_room(data, arr);
+//	i = -1;
+//	write(1, "\n\n",2);
+//	while (++i < data->size_matrix)
+//		ft_printf("%s ", arr[i].room.name);
+//	write(1, "\n\n",2);
+//}
+
 void	parser_room(t_total_data *data, char *str, int index)
 {
 	t_room		new_room;
@@ -59,6 +107,7 @@ void	parser_lem(t_total_data *data)
 	int		i;
 	int		flag[2];
 
+
 	flag[0] = 0;
 	flag[1] = 0;
 	str = 0;
@@ -67,10 +116,10 @@ void	parser_lem(t_total_data *data)
 	data->numb_ants = ft_atoi(str);
 	free(str);
 	while (get_next_line(0, &str))
-	{
 		valid(str, flag, data, &i);
-		i++;
-	}
+	print_matrix(data);
+	dijkstra(data);
+	write(1, "\n\n", 2);
 	print_matrix(data);
 }
 
@@ -88,25 +137,5 @@ void	create_matrix(int ***matrix, int n)
 		ft_bzero((*matrix)[i], n * sizeof(int));
 		i++;
 	}
-	ft_printf("%d\n", 2);
+//	ft_printf("%d\n", 2);
 }
-
-// void	parser_links(t_total_data *data, char *str)
-// {
-// 	int		i;
-// 	char	*tmp;
-
-// 	ft_printf("%d\n", 6);
-// 	i = 0;
-// 	if (data->matrix == NULL)
-// 		create_matrix(&(data->matrix), data->size_matrix);
-// 	tmp = ft_strchr(str, '-');
-// 	*tmp = 0;
-// 	tmp++;
-
-// 	// ft_printf("lol = %d\n", search_room(data->hash_tab + hash_sum(tmp), tmp));
-// 	// ft_printf("lol = %d\n", search_room(data->hash_tab + hash_sum(str), str));
-// 	data->matrix[search_room(data->hash_tab + hash_sum(tmp), tmp)][search_room(data->hash_tab + hash_sum(str), str)] = 1;
-// 	data->matrix[search_room(data->hash_tab + hash_sum(str), str)][search_room(data->hash_tab + hash_sum(tmp), tmp)] = 1;
-// 	ft_printf("%d\n", 5);
-// }
