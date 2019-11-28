@@ -53,7 +53,6 @@ typedef struct	s_top_djks
 	int		visit;
 }				t_top_djks;
 
-
 void		parser_lem(t_total_data *data);
 void		parser_links(t_total_data *data, char *str);
 void		push_front(t_lem_list **list, int index, t_room *room);
