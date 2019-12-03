@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flogan <flogan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 19:41:01 by rthai             #+#    #+#             */
-/*   Updated: 2019/11/25 19:04:54 by flogan           ###   ########.fr       */
+/*   Updated: 2019/12/03 19:19:02 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ typedef struct	s_total_data
 	t_lem_list	*hash_tab[HASH];
 	int			**matrix;
 	int			size_matrix;
+	struct s_top_djks *dist;
 	int			numb_ants;
+	int			numb_path;
 	int			start;
 	int			end;
 }				t_total_data;
@@ -50,7 +52,6 @@ typedef struct	s_top_djks
 {
 	int		distance;
 	int		index_parent;
-	int		visit;
 }				t_top_djks;
 
 void		parser_lem(t_total_data *data);
@@ -65,7 +66,10 @@ void		print_error(int id);
 void		create_matrix(int ***matrix, int n);
 void		parser_room(t_total_data *data, char *str, int index);
 void		valid(char *str, int flag[2], t_total_data *data, int *i);
-void		dijkstra(t_total_data *data);
 t_lem_list	*get_array_room(t_total_data *data, t_lem_list arr[data->size_matrix]);
+int 		get_num_path(t_total_data *data);
 
+int		djkstra(t_total_data *data);
+void	print_matrix(t_total_data *data);
+void	algorithm(t_total_data *data);
 #endif

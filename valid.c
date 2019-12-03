@@ -1,6 +1,6 @@
 #include "lem_in.h"
 
-int    parse_links(t_total_data *data, char *str)
+int		parse_links(t_total_data *data, char *str)
 {
 	char *tmp;
 
@@ -17,7 +17,7 @@ int    parse_links(t_total_data *data, char *str)
 	return (1);   
 }
 
-void     valid(char *str, int flag[2], t_total_data *data, int *i)
+void	valid(char *str, int flag[2], t_total_data *data, int *i)
 {
 	if (!ft_strlen(str))
 		print_error(E_NO_VALID);

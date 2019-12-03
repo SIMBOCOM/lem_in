@@ -3,14 +3,178 @@
 /*                                                        :::      ::::::::   */
 /*   djkstra.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flogan <flogan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 16:26:46 by rthai             #+#    #+#             */
-/*   Updated: 2019/11/25 23:46:42 by flogan           ###   ########.fr       */
+/*   Updated: 2019/12/03 19:18:30 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void	start_djkstra(t_total_data *data, int *used)
+{
+	int i;
+
+	i = -1;
+	while (++i < data->size_matrix)
+	{
+		used[i] = 0;
+		data->dist[i].distance = INT_MAX;
+	}
+}
+
+
+int		djkstra(t_total_data *data)
+{
+	int used[data->size_matrix];
+	int n;
+	int u;
+
+	n = data->size_matrix;
+	start_djkstra(data, used);
+	data->dist[data->start].distance = 0;
+	for (int it = 0; it < n; ++it)
+	{
+		int u = -1;
+		for (int i = 0; i < n; ++i)
+		{
+			if (!used[i] && (u == -1 || data->dist[i].distance < data->dist[u].distance))
+				u = i;
+		}	
+		if (data->dist[u].distance == INT_MAX)
+			break;
+		used[u] = 1;
+		int i;
+		i = 0;
+		while (i < n)
+		{
+			if(data->matrix[u][i] != 0 && data->matrix[u][i] != -1 && data->dist[u].distance + data->matrix[u][i] < data->dist[i].distance)
+			{
+				data->dist[i].distance = data->dist[u].distance + data->matrix[u][i];
+				data->dist[i].index_parent = u;
+			}
+			i++;
+		}
+	}
+	// print_matrix(data);
+	// ft_printf("\n");
+	// int i = data->dist[data->end].index_parent;
+	// ft_printf("%d", data->end + 1);
+	// while (i != data->start)
+	// {
+	// 	ft_printf("%d", i + 1);
+	// 	i = data->dist[i].index_parent;
+	// }
+	// ft_printf("%d", i + 1);
+	return (data->dist[data->end].distance == INT_MAX ? 0 : 1);
+
+}
+
+void	get_cross(t_total_data *data)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (++i < data->size_matrix)
+	{
+		j = -1;
+		while (++j < data->size_matrix)
+		{
+			if (data->matrix[i][j] == -1 && data->matrix[j][i] == -1)
+			{
+				data->matrix[i][j] = 0;
+				data->matrix[j][i] = 0;
+			}
+		}
+	}
+}
+
+void	reverse_ones(t_total_data *data)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (++i < data->size_matrix)
+	{
+		j = -1;
+		while (++j < data->size_matrix)
+			if (data->matrix[i][j] == -1)
+				data->matrix[i][j] = 1;
+	}
+}
+
+void	push_null_matrix(t_total_data *data)
+{
+	int i;
+
+	i = data->end;
+	while (1)
+	{
+		data->matrix[data->dist[i].index_parent][i] = -1;
+		i = data->dist[i].index_parent;
+		if (i == data->start)
+			break ;
+	}
+}
+
+void	reverse_matrix(t_total_data *data, int matrix_path[get_num_path(data)][data->size_matrix], int size, int u)
+{
+	int i;
+	int temp;
+
+	i = 0;
+	size--;
+	while (i < size)
+	{
+		temp = matrix_path[u][i];
+		matrix_path[u][i] = matrix_path[u][size];
+		matrix_path[u][size] = temp;
+		i++;
+		size--;
+	}
+}
+
+void	push_matrix_path(t_total_data *data, int matrix_path[get_num_path(data)][data->size_matrix])
+{
+	int temp[data->size_matrix];
+	int i;
+	int shift;
+
+	i = 0;
+	shift = data->start;
+	ft_printf("data = %d", matrix_path[0][0]);
+	while (1)
+	{
+		matrix_path[data->numb_path][i++] = shift;
+		shift = data->dist[shift].index_parent;
+		if (shift == data->start)
+		{
+			matrix_path[data->numb_path][i] = shift;
+			reverse_matrix(data, matrix_path, i + 1, data->numb_path);
+			break ;
+		}
+	}
+}
+
+void	delete_node(t_total_data *data, int matrix_path[get_num_path(data)][data->size_matrix])
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (matrix_path[data->numb_path][++i] != data->end)
+	{
+		j = -1;
+		while (++j < data->size_matrix)
+		{
+			data->matrix[i][j] = 0;
+			data->matrix[j][i] = 0;
+		}
+	}
+}
 
 int 	get_num_path(t_total_data *data)
 {
@@ -25,22 +189,28 @@ int 	get_num_path(t_total_data *data)
 	return (num);
 }
 
-void	create_arr_path(t_total_data *data, t_top_djks djks[data->size_matrix], int *arr_path)
+void	algorithm(t_total_data *data)
 {
-	int i;
-	t_lem_list	arr[data->size_matrix];
+	int matrix_path[get_num_path(data)][data->size_matrix];
 
-	get_array_room(data, arr);
-	i = data->end;
-	*arr_path = djks[i].index_parent;
-	while (i != -1)
+	matrix_path[0][0] = 1;
+	data->dist = malloc(sizeof(t_top_djks) * data->size_matrix);
+	data->numb_path = 0;
+	while (djkstra(data))
+		push_null_matrix(data);
+	get_cross(data);
+	reverse_ones(data);
+	while (djkstra(data))
 	{
-		if (djks[i].index_parent != -1)
-			data->matrix[djks[i].index_parent][i] *= -1;
-		ft_printf("%s ", arr[i].room.name);
-		i = djks[i].index_parent;
+		push_matrix_path(data, matrix_path);
+		delete_node(data, matrix_path);
+		push_null_matrix(data);
+		data->numb_path++;
 	}
+	// print_matrix(data);
 }
+
+
 
 void	print_path(t_total_data *data, t_top_djks djks[data->size_matrix], int *arr_path)
 {
@@ -65,119 +235,4 @@ void	print_path(t_total_data *data, t_top_djks djks[data->size_matrix], int *arr
 	}
 }
 
-void	get_cross(t_total_data *data)
-{
-	int i;
-	int j;
 
-	i = -1;
-	while (++i < data->size_matrix)
-	{
-		j = -1;
-		while (++j < data->size_matrix)
-		{
-			if (data->matrix[i][j] == -1 && data->matrix[j][i] == -1)
-			{
-				data->matrix[i][j] = 0;
-				data->matrix[j][i] = 0;
-			}
-		}
-	}
-}
-
-int		bypass(t_total_data *data, t_top_djks djks[data->size_matrix], int start, int visit, int path)
-{
-	int res;
-	int i;
-
-	i = -1;
-	res = 0;
-	djks[start].visit = !visit;
-	while (++i < data->size_matrix)
-	{
-		if (i == start)
-			continue;
-		else if (data->matrix[start][i] == path && djks[i].visit == visit && djks[start].distance + 1 < djks[i].distance)
-		{
-			djks[i].distance = djks[start].distance + 1;
-			djks[i].index_parent = start;
-		}
-	}
-	i = -1;
-	while (++i < data->size_matrix)
-	{
-		if (i == start)
-			continue;
-		if (data->matrix[start][i] == path && djks[i].visit == visit)
-			res += bypass(data, djks, i, visit, path);
-	}
-	if (start == data->end)
-		return (1);
-	return (res);
-}
-
-void	search_path(int visit, t_total_data *data, t_top_djks djks[data->size_matrix], int path, int *arr_path)
-{
-	int i;
-	int res;
-
-	res = 1;
-	while (res)
-	{
-		visit = !visit;
-		i = -1;
-		while (++i < data->size_matrix)
-			djks[i].distance = INT_MAX;
-		djks[data->start].distance = 0;
-		res = bypass(data, djks, data->start, visit, path);
-		if (res)
-		{
-			write(1, "\n\n", 2);
-			create_arr_path(data, djks,arr_path);
-		}
-	}
-}
-
-void	dijkstra(t_total_data *data)
-{
-	int i;
-	int res;
-	int visit;
-	int path;
-	int j;
-	int arr_path[get_num_path(data)];
-	t_top_djks djks[data->size_matrix];
-
-	i = -1;
-	path = 1;
-	visit = 0;
-	j = -1;
-	while (++i < data->size_matrix)
-	{
-		djks[i].distance = INT_MAX;
-		djks[i].visit = 0;
-		djks[i].index_parent = -1;
-	}
-	djks[data->start].distance = 0;
-	bypass(data, djks, data->start, visit, path);
-	create_arr_path(data, djks,arr_path);
-	search_path(visit, data, djks, path, arr_path);
-	get_cross(data);
-	res = 1;
-	path = -path;
-	visit = !visit;
-	write (1, "\n", 1);
-	while (res)
-	{
-		visit = !visit;
-		i = -1;
-		while (++i < data->size_matrix)
-			djks[i].distance = INT_MAX;
-		djks[data->start].distance = 0;
-		res = bypass(data, djks, data->start, visit, path);
-		if (res && (++j || 1))
-			create_arr_path(data, djks,arr_path + j);
-		write (1, "\n", 1);
-	}
-	print_path(data, djks, arr_path);
-}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flogan <flogan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:42:31 by rthai             #+#    #+#             */
-/*   Updated: 2019/11/24 14:29:06 by flogan           ###   ########.fr       */
+/*   Updated: 2019/12/03 17:30:28 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_matrix(t_total_data *data)
 		j = 0;
 		while (j < data->size_matrix)
 		{
-			ft_printf("%d ", data->matrix[i][j]);
+			ft_printf("%2d ", data->matrix[i][j]);
 			j++;
 		}
 		ft_printf("\n");
@@ -58,32 +58,6 @@ t_lem_list	*get_array_room(t_total_data *data, t_lem_list arr[data->size_matrix]
 	}
 	return (arr);
 }
-
-//void	print_matrix(t_total_data *data)
-//{
-//	int i;
-//	int j;
-//	t_lem_list arr[data->size_matrix];
-//
-//	i = 0;
-//	while (i < data->size_matrix)
-//	{
-//		j = 0;
-//		while (j < data->size_matrix)
-//		{
-//			ft_printf("%d ", data->matrix[i][j]);
-//			j++;
-//		}
-//		ft_printf("\n");
-//		i++;
-//	}
-//	get_array_room(data, arr);
-//	i = -1;
-//	write(1, "\n\n",2);
-//	while (++i < data->size_matrix)
-//		ft_printf("%s ", arr[i].room.name);
-//	write(1, "\n\n",2);
-//}
 
 void	parser_room(t_total_data *data, char *str, int index)
 {
@@ -118,7 +92,7 @@ void	parser_lem(t_total_data *data)
 	while (get_next_line(0, &str))
 		valid(str, flag, data, &i);
 	print_matrix(data);
-	dijkstra(data);
+	algorithm(data);
 	write(1, "\n\n", 2);
 	print_matrix(data);
 }
