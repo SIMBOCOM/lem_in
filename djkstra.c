@@ -6,7 +6,7 @@
 /*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 16:26:46 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/03 19:18:30 by rthai            ###   ########.fr       */
+/*   Updated: 2019/12/05 18:53:04 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	push_null_matrix(t_total_data *data)
 	}
 }
 
-void	reverse_matrix(t_total_data *data, int matrix_path[get_num_path(data)][data->size_matrix], int size, int u)
+void	reverse_matrix(t_total_data *data, int size, int u)
 {
 	int i;
 	int temp;
@@ -129,49 +129,48 @@ void	reverse_matrix(t_total_data *data, int matrix_path[get_num_path(data)][data
 	size--;
 	while (i < size)
 	{
-		temp = matrix_path[u][i];
-		matrix_path[u][i] = matrix_path[u][size];
-		matrix_path[u][size] = temp;
+		temp = data->matrix_path[u][i];
+		data->matrix_path[u][i] = data->matrix_path[u][size];
+		data->matrix_path[u][size] = temp;
 		i++;
 		size--;
 	}
 }
 
-void	push_matrix_path(t_total_data *data, int matrix_path[get_num_path(data)][data->size_matrix])
+void	push_matrix_path(t_total_data *data)
 {
 	int temp[data->size_matrix];
 	int i;
 	int shift;
 
 	i = 0;
-	shift = data->start;
-	ft_printf("data = %d", matrix_path[0][0]);
+	shift = data->end;
 	while (1)
 	{
-		matrix_path[data->numb_path][i++] = shift;
+		data->matrix_path[data->numb_path][i++] = shift;
 		shift = data->dist[shift].index_parent;
 		if (shift == data->start)
 		{
-			matrix_path[data->numb_path][i] = shift;
-			reverse_matrix(data, matrix_path, i + 1, data->numb_path);
+			data->matrix_path[data->numb_path][i] = shift;
+			reverse_matrix(data, i + 1, data->numb_path);
 			break ;
 		}
 	}
 }
 
-void	delete_node(t_total_data *data, int matrix_path[get_num_path(data)][data->size_matrix])
+void	delete_node(t_total_data *data)
 {
 	int i;
 	int j;
 
 	i = 0;
-	while (matrix_path[data->numb_path][++i] != data->end)
+	while (data->matrix_path[data->numb_path][++i] != data->end)
 	{
 		j = -1;
 		while (++j < data->size_matrix)
 		{
-			data->matrix[i][j] = 0;
-			data->matrix[j][i] = 0;
+			data->matrix[data->matrix_path[data->numb_path][i]][j] = 0;
+			data->matrix[j][data->matrix_path[data->numb_path][i]] = 0;
 		}
 	}
 }
@@ -191,9 +190,14 @@ int 	get_num_path(t_total_data *data)
 
 void	algorithm(t_total_data *data)
 {
-	int matrix_path[get_num_path(data)][data->size_matrix];
-
-	matrix_path[0][0] = 1;
+	int size;
+	int i;
+	
+	size = get_num_path(data);
+	data->matrix_path = (int**)malloc(sizeof(int*) * get_num_path(data));
+	i = -1;
+	while (++i < size)
+		data->matrix_path[i] = (int*)malloc(sizeof(int) * data->size_matrix);
 	data->dist = malloc(sizeof(t_top_djks) * data->size_matrix);
 	data->numb_path = 0;
 	while (djkstra(data))
@@ -202,12 +206,11 @@ void	algorithm(t_total_data *data)
 	reverse_ones(data);
 	while (djkstra(data))
 	{
-		push_matrix_path(data, matrix_path);
-		delete_node(data, matrix_path);
+		push_matrix_path(data);
+		delete_node(data);
 		push_null_matrix(data);
 		data->numb_path++;
 	}
-	// print_matrix(data);
 }
 
 
@@ -235,4 +238,47 @@ void	print_path(t_total_data *data, t_top_djks djks[data->size_matrix], int *arr
 	}
 }
 
+void	print_one_step(t_total_data *data, int count, int *ants_finall)
+{
+	int i;
+	
+	i = -1;
+	while (++i < count)
+	{
+		if (ants_finall[i] != -1)
+			ft_printf("L%d-%d ", i + 1, data->matrix_path[i % data->numb_path][ants_finall[i]]);
+		if (data->matrix_path[i % data->numb_path][ants_finall[i]] == data->end)
+		{
+			ants_finall[i] = -1;
+			data->numb_ants--;
+		}
+	}
+	ft_printf("\n");
+}
 
+void	run_ants(t_total_data *data)
+{
+	int count;
+	int i;
+	int ants_finall[data->numb_ants];
+	int num_ants;
+
+	num_ants = data->numb_ants;
+	i = -1;
+	while (++i < data->numb_ants)
+		ants_finall[i] = 0;
+	count = data->numb_path;
+	while (data->numb_ants > 0)
+	{
+		i = -1;
+		while (++i < count)
+		{
+			if (ants_finall[i] != -1)
+				ants_finall[i]++;
+		}
+		print_one_step(data, count, ants_finall);
+		count += data->numb_path;
+		if (count > num_ants)
+			count = num_ants;
+	}
+}

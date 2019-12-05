@@ -6,7 +6,7 @@
 /*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:42:31 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/03 17:30:28 by rthai            ###   ########.fr       */
+/*   Updated: 2019/12/05 18:56:50 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,25 @@ void	parser_lem(t_total_data *data)
 	str = 0;
 	i = 0;
 	get_next_line(0, &str);
+	ft_printf("%s\n", str);
 	data->numb_ants = ft_atoi(str);
 	free(str);
 	while (get_next_line(0, &str))
+	{
+		ft_printf("%s\n", str);
 		valid(str, flag, data, &i);
-	print_matrix(data);
+	}
 	algorithm(data);
-	write(1, "\n\n", 2);
-	print_matrix(data);
+	write(1, "\n", 1);
+	// for (int i = 0; i < data->numb_path; i++)
+	// {
+	// 	for (int j = 0; data->matrix_path[i][j] != data->end; j++)
+	// 	{
+	// 		ft_printf("%d ", data->matrix_path[i][j]);
+	// 	}
+	// 	ft_printf("%d\n", data->end);
+	// }
+	run_ants(data);
 }
 
 void	create_matrix(int ***matrix, int n)

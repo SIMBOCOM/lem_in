@@ -6,7 +6,7 @@
 /*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 19:41:01 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/03 19:19:02 by rthai            ###   ########.fr       */
+/*   Updated: 2019/12/05 18:41:33 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct	s_total_data
 	int			numb_path;
 	int			start;
 	int			end;
+	int			**matrix_path;
 }				t_total_data;
 
 typedef struct	s_top_djks
@@ -72,4 +73,5 @@ int 		get_num_path(t_total_data *data);
 int		djkstra(t_total_data *data);
 void	print_matrix(t_total_data *data);
 void	algorithm(t_total_data *data);
+void	run_ants(t_total_data *data);
 #endif
