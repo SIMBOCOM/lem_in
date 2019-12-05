@@ -6,7 +6,7 @@
 /*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 16:26:46 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/05 18:53:04 by rthai            ###   ########.fr       */
+/*   Updated: 2019/12/05 19:32:49 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	start_djkstra(t_total_data *data, int *used)
 		data->dist[i].distance = INT_MAX;
 	}
 }
-
 
 int		djkstra(t_total_data *data)
 {
@@ -57,16 +56,6 @@ int		djkstra(t_total_data *data)
 			i++;
 		}
 	}
-	// print_matrix(data);
-	// ft_printf("\n");
-	// int i = data->dist[data->end].index_parent;
-	// ft_printf("%d", data->end + 1);
-	// while (i != data->start)
-	// {
-	// 	ft_printf("%d", i + 1);
-	// 	i = data->dist[i].index_parent;
-	// }
-	// ft_printf("%d", i + 1);
 	return (data->dist[data->end].distance == INT_MAX ? 0 : 1);
 
 }
@@ -213,31 +202,6 @@ void	algorithm(t_total_data *data)
 	}
 }
 
-
-
-void	print_path(t_total_data *data, t_top_djks djks[data->size_matrix], int *arr_path)
-{
-	int j;
-	int i;
-
-	j = -1;
-	t_lem_list	arr[data->size_matrix];
-	get_array_room(data, arr);
-	while (++j < get_num_path(data))
-	{
-		ft_printf("llll\n");
-		ft_printf("%s ", arr[data->end].room.name);
-		ft_printf("%s ", arr[arr_path[j]].room.name);
-		i = djks[arr_path[j]].index_parent;
-		while (i != -1)
-		{
-			ft_printf("%s ", arr[i].room.name);
-			i = djks[i].index_parent;
-		}
-		write (1, "\n", 1);
-	}
-}
-
 void	print_one_step(t_total_data *data, int count, int *ants_finall)
 {
 	int i;
@@ -246,7 +210,7 @@ void	print_one_step(t_total_data *data, int count, int *ants_finall)
 	while (++i < count)
 	{
 		if (ants_finall[i] != -1)
-			ft_printf("L%d-%d ", i + 1, data->matrix_path[i % data->numb_path][ants_finall[i]]);
+			ft_printf("L%d-%s ", i + 1, search_room_index(data, data->matrix_path[i % data->numb_path][ants_finall[i]]));
 		if (data->matrix_path[i % data->numb_path][ants_finall[i]] == data->end)
 		{
 			ants_finall[i] = -1;

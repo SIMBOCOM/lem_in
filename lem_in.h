@@ -6,7 +6,7 @@
 /*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 19:41:01 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/05 18:41:33 by rthai            ###   ########.fr       */
+/*   Updated: 2019/12/05 19:28:29 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct	s_lem_list
 
 typedef struct	s_total_data
 {
-	t_lem_list	*hash_tab[HASH];
+	t_lem_list	*rooms;
 	int			**matrix;
 	int			size_matrix;
 	struct s_top_djks *dist;
@@ -57,12 +57,11 @@ typedef struct	s_top_djks
 
 void		parser_lem(t_total_data *data);
 void		parser_links(t_total_data *data, char *str);
-void		push_front(t_lem_list **list, int index, t_room *room);
-int			search_room(t_lem_list **list, char *str);
-void		push_front(t_lem_list **list, int index, t_room *room);
+void		push_front(t_total_data *data, int index, t_room *room);
+int			search_room_name(t_total_data *data, char *str);
+char		*search_room_index(t_total_data *data, int index);
 t_lem_list	*lst_create(int index, t_room *room);
 void		my_copy(t_room *in, t_room *out);
-int			hash_sum(char *str);
 void		print_error(int id);
 void		create_matrix(int ***matrix, int n);
 void		parser_room(t_total_data *data, char *str, int index);

@@ -6,7 +6,7 @@
 /*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:42:31 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/05 18:56:50 by rthai            ###   ########.fr       */
+/*   Updated: 2019/12/05 19:23:47 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,6 @@ void	print_matrix(t_total_data *data)
 	}
 }
 
-t_lem_list	*get_array_room(t_total_data *data, t_lem_list arr[data->size_matrix])
-{
-	int i;
-	t_lem_list *tmp;
-
-	i = -1;
-	while (++i < 128)
-	{
-		if (data->hash_tab[i])
-		{
-			arr[data->hash_tab[i]->index] = *data->hash_tab[i];
-			tmp = data->hash_tab[i];
-			while (tmp->next)
-			{
-				tmp = tmp->next;
-				arr[tmp->index] = *tmp;
-			}
-		}
-	}
-	return (arr);
-}
-
 void	parser_room(t_total_data *data, char *str, int index)
 {
 	t_room		new_room;
@@ -71,7 +49,7 @@ void	parser_room(t_total_data *data, char *str, int index)
 	new_room.x = ft_atoi(temp);
 	temp = ft_strchr(temp, ' ');
 	new_room.y = ft_atoi(temp);
-	push_front(data->hash_tab + hash_sum(new_room.name), index, &new_room);
+	push_front(data, index, &new_room);
 	// ft_printf("%d\n", 10);
 }
 

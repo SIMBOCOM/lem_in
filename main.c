@@ -6,7 +6,7 @@
 /*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:31:14 by rthai             #+#    #+#             */
-/*   Updated: 2019/11/22 20:34:56 by rthai            ###   ########.fr       */
+/*   Updated: 2019/12/05 19:30:05 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int main()
 	data.size_matrix = 0;
 	data.numb_ants = 0;
 	data.matrix = NULL;
-	for (int i = 0; i < HASH; i++)
-		data.hash_tab[i] = NULL;
+	data.rooms = NULL;
 	parser_lem(&data);
 }

@@ -10,11 +10,11 @@ int		parse_links(t_total_data *data, char *str)
 		create_matrix(&(data->matrix), data->size_matrix);
 	tmp = ft_strchr(str, '-');
 	*(tmp++) = 0;
-	if (search_room(data->hash_tab + hash_sum(tmp), tmp) == -1 || search_room(data->hash_tab + hash_sum(str), str) == -1)
+	if (search_room_name(data, tmp) == -1 || search_room_name(data, str) == -1)
 		print_error(E_VAL_LINK);
-	data->matrix[search_room(data->hash_tab + hash_sum(tmp), tmp)][search_room(data->hash_tab + hash_sum(str), str)] = 1;
-	data->matrix[search_room(data->hash_tab + hash_sum(str), str)][search_room(data->hash_tab + hash_sum(tmp), tmp)] = 1;
-	return (1);   
+	data->matrix[search_room_name(data, tmp)][search_room_name(data, str)] = 1;
+	data->matrix[search_room_name(data, str)][search_room_name(data, tmp)] = 1;
+	return (1);
 }
 
 void	valid(char *str, int flag[2], t_total_data *data, int *i)
