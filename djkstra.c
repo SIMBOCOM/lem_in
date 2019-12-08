@@ -6,7 +6,7 @@
 /*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 16:26:46 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/08 18:29:56 by rthai            ###   ########.fr       */
+/*   Updated: 2019/12/08 20:13:42 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,15 +308,17 @@ void	algorithm(t_total_data *data)
 	search_path_first(data);
 	copy_matrix(data->matrix, matrix_save, data->size_matrix);
 	search_path_second(data);
-	if (data->path_first.size_of_step <= data->path_first.size_of_step)
+	tarakan_create(data, &(data->path_second));
+	tarakan_create(data, &(data->path_first));
+	if (data->path_first.size_of_step >= data->path_second.size_of_step)
 	{
-		tarakan_create(data, &(data->path_second));
 		run_ants_new(data, &(data->path_second));
+		ft_printf("second");
 	}
 	else
 	{
-		tarakan_create(data, &(data->path_first));
 		run_ants_new(data, &(data->path_first));
+		ft_printf("first");
 	}
 	
 }
@@ -343,7 +345,10 @@ void	print_one_step_new(t_total_data *data, int count,
 			ft_printf("L%d-%s ", i + 1,
 			search_room_index(data, path->matrix_path[ants_finall[i].num_road][ants_finall[i].index]));
 		if (path->matrix_path[ants_finall[i].num_road][ants_finall[i].index] == data->end)
+		{
 			ants_finall[i].index = -1;
+			// ft_printf("i = %d\n", i);
+		}
 	}
 	ft_printf("\n");
 }
@@ -356,23 +361,31 @@ void	run_ants_new(t_total_data *data, t_path *path)
 	t_pos_index_tarakan	ants_finall[data->numb_ants];
 
 	i = -1;
+	int numb_path_new = path->numb_path;
+	for (int z = 0; z < path->numb_path; z++)
+		if (!path->tarakan[z].size_of_tarakan)
+			numb_path_new--;
+	path->numb_path = numb_path_new;
 	while (++i < data->numb_ants)
 	{
 		ants_finall[i].index = 0;
 		ants_finall[i].num_road = 0;
 	}
 	count = path->numb_path;
+	if (count > data->numb_ants)
+		count = data->numb_ants;
 	i = -1;
+	ft_printf("size = %d", path->size_of_step);
 	while (++i < path->size_of_step)
 	{
+		
 		j = -1;
 		while (++j < count)
 			if (ants_finall[j].index != -1)
-			{
 				ants_finall[j].index++;
-				// ft_printf("i = %d ants_finall[i].index = %d road = %d\n", j, ants_finall[j].index, ants_finall[j].num_road);
-			}
 		print_one_step_new(data, count, path, ants_finall);
+		// for (int k = 0; k < count; k++)
+			// ft_printf("i = %d ants_finall[i].index = %d road = %d\n", k, ants_finall[k].index, ants_finall[k].num_road);
 		count += path->numb_path;
 		if (count > data->numb_ants)
 			count = data->numb_ants;
