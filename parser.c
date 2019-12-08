@@ -6,7 +6,7 @@
 /*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:42:31 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/05 19:23:47 by rthai            ###   ########.fr       */
+/*   Updated: 2019/12/08 18:30:17 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	parser_lem(t_total_data *data)
 		ft_printf("%s\n", str);
 		valid(str, flag, data, &i);
 	}
-	algorithm(data);
 	write(1, "\n", 1);
+	algorithm(data);
 	// for (int i = 0; i < data->numb_path; i++)
 	// {
 	// 	for (int j = 0; data->matrix_path[i][j] != data->end; j++)
@@ -83,7 +83,10 @@ void	parser_lem(t_total_data *data)
 	// 	}
 	// 	ft_printf("%d\n", data->end);
 	// }
-	run_ants(data);
+	int jk = data->numb_ants;
+	
+	// data->numb_ants = jk;
+	// run_ants(data, &(data->path_second));
 }
 
 void	create_matrix(int ***matrix, int n)

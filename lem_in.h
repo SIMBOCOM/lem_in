@@ -6,7 +6,7 @@
 /*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 19:41:01 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/05 19:28:29 by rthai            ###   ########.fr       */
+/*   Updated: 2019/12/08 18:04:28 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,20 @@ typedef struct	s_lem_list
 	struct s_lem_list	*next;
 }				t_lem_list;
 
+typedef struct s_path_tarakan
+{
+	int		size_of_road;
+	int		size_of_tarakan;
+}				t_path_tarakan;
+
+typedef struct	s_path
+{
+	int				numb_path;
+	int				**matrix_path;
+	int				size_of_step;
+	t_path_tarakan	*tarakan;
+}				t_path;
+
 typedef struct	s_total_data
 {
 	t_lem_list	*rooms;
@@ -43,10 +57,10 @@ typedef struct	s_total_data
 	int			size_matrix;
 	struct s_top_djks *dist;
 	int			numb_ants;
-	int			numb_path;
 	int			start;
 	int			end;
-	int			**matrix_path;
+	t_path		path_first;
+	t_path		path_second;
 }				t_total_data;
 
 typedef struct	s_top_djks
@@ -54,6 +68,13 @@ typedef struct	s_top_djks
 	int		distance;
 	int		index_parent;
 }				t_top_djks;
+
+typedef	struct	t_pos_index_tarakan
+{
+	int index;
+	int num_road;
+}				t_pos_index_tarakan;
+
 
 void		parser_lem(t_total_data *data);
 void		parser_links(t_total_data *data, char *str);
@@ -72,5 +93,6 @@ int 		get_num_path(t_total_data *data);
 int		djkstra(t_total_data *data);
 void	print_matrix(t_total_data *data);
 void	algorithm(t_total_data *data);
-void	run_ants(t_total_data *data);
+void	run_ants_new(t_total_data *data, t_path *path);
+
 #endif
