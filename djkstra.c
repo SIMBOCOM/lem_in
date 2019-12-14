@@ -6,7 +6,7 @@
 /*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 16:26:46 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/08 20:13:42 by rthai            ###   ########.fr       */
+/*   Updated: 2019/12/14 14:42:05 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,16 +311,9 @@ void	algorithm(t_total_data *data)
 	tarakan_create(data, &(data->path_second));
 	tarakan_create(data, &(data->path_first));
 	if (data->path_first.size_of_step >= data->path_second.size_of_step)
-	{
 		run_ants_new(data, &(data->path_second));
-		ft_printf("second");
-	}
 	else
-	{
 		run_ants_new(data, &(data->path_first));
-		ft_printf("first");
-	}
-	
 }
 
 void	print_one_step_new(t_total_data *data, int count,
@@ -375,7 +368,6 @@ void	run_ants_new(t_total_data *data, t_path *path)
 	if (count > data->numb_ants)
 		count = data->numb_ants;
 	i = -1;
-	ft_printf("size = %d", path->size_of_step);
 	while (++i < path->size_of_step)
 	{
 		

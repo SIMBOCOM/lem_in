@@ -4,197 +4,132 @@
 #include <stdlib.h>
 #include <string.h>
 
-static int stencilOn = 1;
+#include <GLUT/glut.h>
+#include <OpenGL/gl.h>
+#include <stdio.h>
+#include <unistd.h>
+#include "../lem_in.h"
 
-/* function declarations */
+t_total_data *data;
 
-void
-  drawScene(void), setMatrix(void), animation(void), resize(int w, int h),
-  keyboard(unsigned char c, int x, int y), menu(int choice), drawWireframe(int face),
-  drawFilled(int face);
-
-/* global variables */
-
-float ax, ay, az;       /* angles for animation */
-
-/* coords of a cube */
-static GLfloat cube[8][3] =
-{0.0, 0.0, 0.0,
-  1.0, 0.0, 0.0,
-  1.0, 0.0, 1.0,
-  0.0, 0.0, 1.0,
-  1.0, 1.0, 0.0,
-  1.0, 1.0, 1.0,
-  0.0, 1.0, 1.0,
-  0.0, 1.0, 0.0};
-
-static int faceIndex[6][4] =
-{0, 1, 2, 3,
-  1, 4, 5, 2,
-  4, 7, 6, 5,
-  7, 0, 3, 6,
-  3, 2, 5, 6,
-  7, 4, 1, 0};
-int main(int argc, char **argv)
+float norm(int n)
 {
-  glutInit(&argc, argv);
-
-  glutInitWindowSize(400, 400);
-  glutInitDisplayMode(GLUT_RGB | GLUT_STENCIL | GLUT_DOUBLE | GLUT_DEPTH);
-  glutCreateWindow("Stenciled hidden surface removal");
-
-  ax = 10.0;
-  ay = -10.0;
-  az = 0.0;
-
-  glutDisplayFunc(drawScene);
-  glutReshapeFunc(resize);
-  glutCreateMenu(menu);
-  glutAddMenuEntry("Motion", 3);
-  glutAddMenuEntry("Stencil on", 1);
-  glutAddMenuEntry("Stencil off", 2);
-  glutAttachMenu(GLUT_RIGHT_BUTTON);
-  glutKeyboardFunc(keyboard);
-  glutMainLoop();
-  return 0;             /* ANSI C requires main to return int. */
+	if (n == 0)
+		return (0);
+	else
+	{
+		ft_printf("%f\n", (float)(n / 13.0));
+		if (n < 7)
+			return ((float)((n / 14.0 - 7.0 / 14)));
+		else
+			return ((float)(n / 14.0 - 7.0 / 14));
+	}
 }
 
-void	drawWireframe(int face)
+void draw_ants(float x, float y)
 {
-  int i;
-  glBegin(GL_LINE_LOOP);
-  for (i = 0; i < 4; i++)
-    glVertex3fv((GLfloat *) cube[faceIndex[face][i]]);
-  glEnd();
+	glPointSize(7);
+	glBegin(GL_POINTS);
+	glColor3d(10,10,10);
+	glVertex2f(x, y);
+	glEnd();
+	glFlush();
+	usleep(700000);
+	glPointSize(7);
+	glBegin(GL_POINTS);
+	glColor3d(255,0,255);
+	glVertex2f(x, y);
+	glEnd();
+	glFlush();
 }
 
-void	drawFilled(int face)
+void draw_graph()
 {
-  int i;
-  glBegin(GL_POLYGON);
-  for (i = 0; i < 4; i++)
-    glVertex3fv((GLfloat *) cube[faceIndex[face][i]]);
-  glEnd();
+	int i;
+	t_lem_list *shift = data->rooms;
+
+	i = -1;
+	glClear(GL_COLOR_BUFFER_BIT);
+	glPointSize(7);
+	glBegin(GL_POINTS);
+	glColor3d(255,0,255);
+	
+	while (shift)
+	{
+		
+		glVertex2f(norm(shift->room.x), norm(shift->room.y));
+		shift = shift->next;
+	}
+	
+	glEnd();
+	glFlush();
+
+	// i = -1;
+	// glBegin(GL_LINES);
+	// glColor3d(30,30,255);
+	// while (++i < 3)
+	// {
+	// 	glVertex3f(norm(arr[link[i][0]][1]), norm(arr[link[i][0]][2]), 0.0);
+	// 	glVertex3f(norm(arr[link[i][1]][1]), norm(arr[link[i][1]][2]), 0.0);
+	// }
+	// glEnd();
+	// glFlush();
 }
 
-void	drawScene(void)
+
+// void draw_graph(int arr[5][3], int link[5][2])
+// {
+// 	int i;
+
+// 	i = -1;
+// 	glClear(GL_COLOR_BUFFER_BIT);
+// 	glPointSize(7);
+// 	glBegin(GL_POINTS);
+// 	glColor3d(255,0,255);
+// 	while (++i < 4)
+// 		glVertex2f(norm(arr[i][1]), norm(arr[i][2]));
+// 	glEnd();
+// 	glFlush();
+
+// 	i = -1;
+// 	glBegin(GL_LINES);
+// 	glColor3d(30,30,255);
+// 	while (++i < 3)
+// 	{
+// 		glVertex3f(norm(arr[link[i][0]][1]), norm(arr[link[i][0]][2]), 0.0);
+// 		glVertex3f(norm(arr[link[i][1]][1]), norm(arr[link[i][1]][2]), 0.0);
+// 	}
+// 	glEnd();
+// 	glFlush();
+// }
+
+void displayMe()
 {
+	int i;
+	int j;
 
-  int i;
-  glEnable(GL_DEPTH_TEST);
-  glDepthFunc(GL_LEQUAL);
-
-  glClearColor(0.0, 0.0, 0.0, 0.0);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-  glPushMatrix();
-
-  glRotatef(ax, 1.0, 0.0, 0.0);
-  glRotatef(-ay, 0.0, 1.0, 0.0);
-
-  /* all the good stuff follows */
-
-  if (stencilOn) {
-    glEnable(GL_STENCIL_TEST);
-    glClear(GL_STENCIL_BUFFER_BIT);
-    glStencilMask(1);
-    glStencilFunc(GL_ALWAYS, 0, 1);
-    glStencilOp(GL_INVERT, GL_INVERT, GL_INVERT);
-  }
-  glColor3f(1.0, 1.0, 0.0);
-  for (i = 0; i < 6; i++) {
-    drawWireframe(i);
-    if (stencilOn) {
-      glStencilFunc(GL_EQUAL, 0, 1);
-      glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
-    }
-    glColor3f(0.0, 0.0, 0.0);
-    drawFilled(i);
-
-    glColor3f(1.0, 1.0, 0.0);
-    if (stencilOn) {
-      glStencilFunc(GL_ALWAYS, 0, 1);
-      glStencilOp(GL_INVERT, GL_INVERT, GL_INVERT);
-    }
-    glColor3f(1.0, 1.0, 0.0);
-    drawWireframe(i);
-  }
-  glPopMatrix();
-
-  if (stencilOn)
-    glDisable(GL_STENCIL_TEST);
-
-  /* end of good stuff */
-
-  glutSwapBuffers();
+	int arr[5][3]= {0, 2, 0, 1, 0, 2, 2, 4, 2, 3, 4, 4, 4, 2, 6};
+	int link[5][2]= {0,1,0,2,2,3,3,4,4,1};
+	draw_graph(data);
+	// draw_graph(arr, link);
+	// i = -1;
+	// usleep(5000000);
+	// j = -1;
+	// while (++j < 3)
+	// {
+	// 	draw_ants(norm(arr[link[j][1]][1]), norm(arr[link[j][1]][2]));
+	// }
 }
-
-void
-setMatrix(void)
+int run(int argc, char **argv, t_total_data *temp)
 {
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  glOrtho(-2.0, 2.0, -2.0, 2.0, -2.0, 2.0);
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
-}
-
-int count = 0;
-
-void	animation(void)
-{
-  /* animate the cone */
-
-  ax += 5.0;
-  ay -= 2.0;
-  az += 5.0;
-  if (ax >= 360)
-    ax = 0.0;
-  if (ay <= -360)
-    ay = 0.0;
-  if (az >= 360)
-    az = 0.0;
-  glutPostRedisplay();
-  count++;
-  if (count >= 60)
-    glutIdleFunc(NULL);
-}
-
-void	menu(int choice)
-{
-  switch (choice) {
-  case 3:
-    count = 0;
-    glutIdleFunc(animation);
-    break;
-  case 2:
-    stencilOn = 0;
-    glutSetWindowTitle("Stencil Disabled");
-    glutPostRedisplay();
-    break;
-  case 1:
-    stencilOn = 1;
-    glutSetWindowTitle("Stencil Enabled");
-    glutPostRedisplay();
-    break;
-  }
-}
-
-/* ARGSUSED1 */
-void	keyboard(unsigned char c, int x, int y)
-{
-  switch (c) {
-  case 27:
-    exit(0);
-    break;
-  default:
-    break;
-  }
-}
-
-void
-resize(int w, int h)
-{
-  glViewport(0, 0, w, h);
-  setMatrix();
+	data = temp;
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_SINGLE);
+	glutInitWindowSize(400, 300);
+	glutInitWindowPosition(100, 100);
+	glutCreateWindow("Hello world!");
+	glutDisplayFunc(displayMe);
+	
+	glutMainLoop();
+	return 0;
 }

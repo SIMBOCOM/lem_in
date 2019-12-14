@@ -6,7 +6,7 @@
 /*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 19:41:01 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/08 18:04:28 by rthai            ###   ########.fr       */
+/*   Updated: 2019/12/14 15:24:03 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ int		djkstra(t_total_data *data);
 void	print_matrix(t_total_data *data);
 void	algorithm(t_total_data *data);
 void	run_ants_new(t_total_data *data, t_path *path);
+int		run(int, char**, t_total_data *data);
 
 #endif

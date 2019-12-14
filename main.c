@@ -6,13 +6,13 @@
 /*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:31:14 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/05 19:30:05 by rthai            ###   ########.fr       */
+/*   Updated: 2019/12/14 15:25:19 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int main()
+int main(int argc, char **argv)
 {
 	t_total_data data;
 
@@ -23,4 +23,5 @@ int main()
 	data.matrix = NULL;
 	data.rooms = NULL;
 	parser_lem(&data);
+	run(argc, argv, &data);
 }

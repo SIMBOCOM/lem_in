@@ -6,7 +6,7 @@
 /*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 19:42:31 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/08 20:18:26 by rthai            ###   ########.fr       */
+/*   Updated: 2019/12/14 15:23:07 by rthai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	parser_lem(t_total_data *data)
 	i = 0;
 	get_next_line(0, &str);
 	ft_printf("%s\n", str);
-	data->numb_ants = 488;
+	data->numb_ants = ft_atoi(str);
 	free(str);
 	while (get_next_line(0, &str))
 	{
