@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: flogan <flogan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 19:41:01 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/14 15:24:03 by rthai            ###   ########.fr       */
+/*   Updated: 2019/12/14 19:56:25 by flogan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,15 @@
 # define E_END 4
 # define E_VAL_LINK 5
 
+typedef struct	s_min_max
+{
+	int min_y;
+	int max_y;
+	int min_x;
+	int max_x;
+	int midl_x;
+	int midl_y;
+}				t_min_max;
 
 typedef struct	s_room
 {

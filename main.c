@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: flogan <flogan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:31:14 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/14 15:25:19 by rthai            ###   ########.fr       */
+/*   Updated: 2019/12/14 19:01:00 by flogan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int main(int argc, char **argv)
 {
 	t_total_data data;
-
 	data.end = 0;
 	data.start = 0;
 	data.size_matrix = 0;
@@ -23,5 +22,5 @@ int main(int argc, char **argv)
 	data.matrix = NULL;
 	data.rooms = NULL;
 	parser_lem(&data);
-	run(argc, argv, &data);
+	// run(argc, argv, &data);
 }
