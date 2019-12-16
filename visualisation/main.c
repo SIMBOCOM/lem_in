@@ -6,16 +6,8 @@
 #include <OpenGL/gl.h>
 #include <unistd.h>
 #include "../lem_in.h"
-#include <OpenGL/glu.h>
+#include "mlx.h"
 
-
-
-typedef struct _AUX_RGBImageRec {
-   GLint sizeX, sizeY;
-   unsigned char *data;
-} AUX_RGBImageRec;
-
-AUX_RGBImageRec *image;
 
 t_total_data *data;
 
@@ -191,12 +183,6 @@ void displayMe()
 	int j;
 
 	draw_graph();
-	glRasterPos2d(-4.5,-3);                    // нижний левый угол
-	glPixelZoom(1,1);
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);         // выравнивание
-	glDrawPixels(image->sizeX, image->sizeY, // ширина и высота
-				GL_RGB, GL_UNSIGNED_BYTE,      // формат и тип
-						  image->data);     // сами данные
 	// draw_graph(arr, link);
 	// i = -1;
 
@@ -210,6 +196,30 @@ void displayMe()
 
 int main(int argc, char **argv)
 {
+	//gcc visualisation/main.c parser.c valid.c djkstra.c list_methods.c ft_printf/libftprintf.a -framework OpenGL -framework GLut -Wno-deprecated-declarations
+	// char *str = "-34--25";
+	// if (ft_strcmp(str, ft_strchr(str, '-')) && ft_strchr(str, '-')[-1] != ' ')
+	// {
+	// 	ft_printf("1");
+	// 	return (0);	
+	// }
+	// 	while (!ft_strcmp(str, ft_strchr(str, '-')))
+	// 	{
+	// 		if (!(str = ft_strchr(str, '-') + 1))
+	// 		{
+	// 			ft_printf("2");
+	// 			return (0);	
+	// 		}
+	// 		if (ft_strchr(str, '-') && ft_strcmp(str, ft_strchr(str, '-')) && ft_strchr(str, '-')[-1] != ' ')
+	// 		{
+	// 			ft_printf("2");
+	// 			return (0);	
+	// 		}
+	// 		exit(1);
+	// 	}
+	// exit(1);
+	
+
 	t_total_data temp;
 	temp.end = 0;
 	temp.start = 0;
@@ -217,8 +227,6 @@ int main(int argc, char **argv)
 	temp.numb_ants = 0;
 	temp.matrix = NULL;
 	temp.rooms = NULL;
-
-	image = auxDIBImageLoad("tarakan.jpg");
 	data = &temp;
 	parser_vis();
 

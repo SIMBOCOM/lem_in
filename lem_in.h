@@ -6,7 +6,7 @@
 /*   By: flogan <flogan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 19:41:01 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/14 19:56:25 by flogan           ###   ########.fr       */
+/*   Updated: 2019/12/16 12:42:06 by flogan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 # define E_START 3
 # define E_END 4
 # define E_VAL_LINK 5
+# define E_INT 6
+# define E_NO_LINK 7
+# define E_PATH 8
+# define E_ANT 9
+# define E_ROOM 10
 
 typedef struct	s_min_max
 {

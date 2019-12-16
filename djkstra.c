@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   djkstra.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: flogan <flogan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 16:26:46 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/14 14:42:05 by rthai            ###   ########.fr       */
+/*   Updated: 2019/12/15 17:00:48 by flogan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,6 +306,8 @@ void	algorithm(t_total_data *data)
 	matrix_save = copy_create_matrix(data->size_matrix, data->matrix);
 	data->dist = malloc(sizeof(t_top_djks) * data->size_matrix);
 	search_path_first(data);
+	if (!data->path_first.numb_path)
+		return (print_error(E_PATH));
 	copy_matrix(data->matrix, matrix_save, data->size_matrix);
 	search_path_second(data);
 	tarakan_create(data, &(data->path_second));
