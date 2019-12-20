@@ -1,92 +1,15 @@
-cmake_minimum_required(VERSION 3.14)
-project(LEM_IN C)
+cmake_minimum_required(VERSION 3.15)
+project(sdl_hello C)
 
 set(CMAKE_C_STANDARD 11)
 
-include_directories(.)
-include_directories(ft_printf/include)
-include_directories(ft_printf/libft)
+LINK_DIRECTORIES(/Users/flogan/.brew/lib)
+LINK_DIRECTORIES(./ft_printf/)
+include_directories(/Users/flogan/.brew/include/SDL2)
+include_directories(/Users/flogan/.brew/include/SDL2_image)
+add_executable(sdl_hello
+        visualisation/main_test.c parser.c valid.c freez.c list_methods.c djkstra.c)
 
-add_executable(LEM_IN
-        ft_printf/ft_printf/convert_float_to_str.c
-        ft_printf/ft_printf/ft_printf.c
-        ft_printf/ft_printf/help_function_float.c
-        ft_printf/ft_printf/help_function_parsers.c
-        ft_printf/ft_printf/long_arithmetic.c
-        ft_printf/ft_printf/parsers.c
-        ft_printf/ft_printf/parsers_printf.c
-        ft_printf/ft_printf/print_float.c
-        ft_printf/include/ft_printf.h
-        ft_printf/libft/ft_atoi.c
-        ft_printf/libft/ft_bzero.c
-        ft_printf/libft/ft_isalnum.c
-        ft_printf/libft/ft_isalpha.c
-        ft_printf/libft/ft_isascii.c
-        ft_printf/libft/ft_isdigit.c
-        ft_printf/libft/ft_islower.c
-        ft_printf/libft/ft_isprint.c
-        ft_printf/libft/ft_isspace.c
-        ft_printf/libft/ft_isupper.c
-        ft_printf/libft/ft_itoa.c
-        ft_printf/libft/ft_lstadd.c
-        ft_printf/libft/ft_lstdel.c
-        ft_printf/libft/ft_lstdelone.c
-        ft_printf/libft/ft_lstiter.c
-        ft_printf/libft/ft_lstmap.c
-        ft_printf/libft/ft_lstnew.c
-        ft_printf/libft/ft_memalloc.c
-        ft_printf/libft/ft_memccpy.c
-        ft_printf/libft/ft_memchr.c
-        ft_printf/libft/ft_memcmp.c
-        ft_printf/libft/ft_memcpy.c
-        ft_printf/libft/ft_memdel.c
-        ft_printf/libft/ft_memmove.c
-        ft_printf/libft/ft_memset.c
-        ft_printf/libft/ft_putchar.c
-        ft_printf/libft/ft_putchar_fd.c
-        ft_printf/libft/ft_putendl.c
-        ft_printf/libft/ft_putendl_fd.c
-        ft_printf/libft/ft_putnbr.c
-        ft_printf/libft/ft_putnbr_fd.c
-        ft_printf/libft/ft_putstr.c
-        ft_printf/libft/ft_putstr_fd.c
-        ft_printf/libft/ft_strcat.c
-        ft_printf/libft/ft_strchr.c
-        ft_printf/libft/ft_strclr.c
-        ft_printf/libft/ft_strcmp.c
-        ft_printf/libft/ft_strcpy.c
-        ft_printf/libft/ft_strdel.c
-        ft_printf/libft/ft_strdup.c
-        ft_printf/libft/ft_strequ.c
-        ft_printf/libft/ft_striter.c
-        ft_printf/libft/ft_striteri.c
-        ft_printf/libft/ft_strjoin.c
-        ft_printf/libft/ft_strlcat.c
-        ft_printf/libft/ft_strlen.c
-        ft_printf/libft/ft_strlowcase.c
-        ft_printf/libft/ft_strmap.c
-        ft_printf/libft/ft_strmapi.c
-        ft_printf/libft/ft_strncat.c
-        ft_printf/libft/ft_strncmp.c
-        ft_printf/libft/ft_strncpy.c
-        ft_printf/libft/ft_strnequ.c
-        ft_printf/libft/ft_strnew.c
-        ft_printf/libft/ft_strnstr.c
-        ft_printf/libft/ft_strrchr.c
-        ft_printf/libft/ft_strsplit.c
-        ft_printf/libft/ft_strstr.c
-        ft_printf/libft/ft_strsub.c
-        ft_printf/libft/ft_strtrim.c
-        ft_printf/libft/ft_strupcase.c
-        ft_printf/libft/ft_tolower.c
-        ft_printf/libft/ft_toupper.c
-        ft_printf/libft/get_next_line.c
-        ft_printf/libft/get_next_line.h
-        ft_printf/libft/libft.h
-        djkstra.c
-        hash_table.c
-        lem_in.h
-        list_methods.c
-        main.c
-        parser.c
-        valid.c)
+
+find_package(OpenGL REQUIRED)
+target_link_libraries(sdl_hello ${OPENGL_LIBRARIES} SDL2 SDL2_image ftprintf)

@@ -302,7 +302,7 @@ void	tarakan_create(t_total_data *data, t_path *path)
 void	algorithm(t_total_data *data)
 {
 	int **matrix_save;
-	
+
 	matrix_save = copy_create_matrix(data->size_matrix, data->matrix);
 	data->dist = malloc(sizeof(t_top_djks) * data->size_matrix);
 	search_path_first(data);
@@ -316,17 +316,20 @@ void	algorithm(t_total_data *data)
 		run_ants_new(data, &(data->path_second));
 	else
 		run_ants_new(data, &(data->path_first));
+	freez(data);
 }
 
 void	print_one_step_new(t_total_data *data, int count,
 				t_path *path, t_pos_index_tarakan	*ants_finall)
 {
 	int i;
+	int flag;
 
 	i = -1;
+	flag = 0;
 	while (++i < count)
 	{
-		if (!ants_finall[i].num_road)
+		if (ants_finall[i].num_road == -1)
 		{
 			if (path->tarakan[i % path->numb_path].size_of_tarakan)
 			{
@@ -337,12 +340,15 @@ void	print_one_step_new(t_total_data *data, int count,
 			}
 		}
 		if (ants_finall[i].index != -1)
-			ft_printf("L%d-%s ", i + 1,
-			search_room_index(data, path->matrix_path[ants_finall[i].num_road][ants_finall[i].index]));
+		{
+			if (flag)
+				write(1, " ", 1);
+			ft_printf("L%d-%s", i + 1, search_room_index(data, path->matrix_path[ants_finall[i].num_road][ants_finall[i].index]));
+			flag++;
+		}
 		if (path->matrix_path[ants_finall[i].num_road][ants_finall[i].index] == data->end)
 		{
 			ants_finall[i].index = -1;
-			// ft_printf("i = %d\n", i);
 		}
 	}
 	ft_printf("\n");
@@ -364,7 +370,7 @@ void	run_ants_new(t_total_data *data, t_path *path)
 	while (++i < data->numb_ants)
 	{
 		ants_finall[i].index = 0;
-		ants_finall[i].num_road = 0;
+		ants_finall[i].num_road = -1;
 	}
 	count = path->numb_path;
 	if (count > data->numb_ants)
@@ -372,64 +378,13 @@ void	run_ants_new(t_total_data *data, t_path *path)
 	i = -1;
 	while (++i < path->size_of_step)
 	{
-		
 		j = -1;
 		while (++j < count)
 			if (ants_finall[j].index != -1)
 				ants_finall[j].index++;
 		print_one_step_new(data, count, path, ants_finall);
-		// for (int k = 0; k < count; k++)
-			// ft_printf("i = %d ants_finall[i].index = %d road = %d\n", k, ants_finall[k].index, ants_finall[k].num_road);
 		count += path->numb_path;
 		if (count > data->numb_ants)
 			count = data->numb_ants;
-	}
-}
-
-
-
-void	print_one_step(t_total_data *data, int count, int *ants_finall, t_path *path)
-{
-	int i;
-	
-	i = -1;
-	while (++i < count)
-	{
-		if (ants_finall[i] != -1)
-			ft_printf("L%d-%s ", i + 1, search_room_index(data, path->matrix_path[i % path->numb_path][ants_finall[i]]));
-		if (path->matrix_path[i % path->numb_path][ants_finall[i]] == data->end)
-		{
-			
-			ants_finall[i] = -1;
-			data->numb_ants--;
-		}
-	}
-	ft_printf("\n");
-}
-
-void	run_ants(t_total_data *data, t_path *path)
-{
-	int count;
-	int i;
-	int ants_finall[data->numb_ants];
-	int num_ants;
-
-	num_ants = data->numb_ants;
-	i = -1;
-	while (++i < data->numb_ants)
-		ants_finall[i] = 0;
-	count = path->numb_path;
-	while (data->numb_ants > 0)
-	{
-		i = -1;
-		while (++i < count)
-		{
-			if (ants_finall[i] != -1)
-				ants_finall[i]++;
-		}
-		print_one_step(data, count, ants_finall, path);
-		count += path->numb_path;
-		if (count > num_ants)
-			count = num_ants;
 	}
 }

@@ -25,13 +25,11 @@
 # define E_PATH 8
 # define E_ANT 9
 # define E_ROOM 10
+# define WIDTH 1600
+# define HEIGHT 1200
 
 typedef struct	s_min_max
 {
-	int min_y;
-	int max_y;
-	int min_x;
-	int max_x;
 	int midl_x;
 	int midl_y;
 }				t_min_max;
@@ -75,6 +73,7 @@ typedef struct	s_total_data
 	int			end;
 	t_path		path_first;
 	t_path		path_second;
+	t_min_max	mm;
 }				t_total_data;
 
 typedef struct	s_top_djks
@@ -90,8 +89,6 @@ typedef	struct	t_pos_index_tarakan
 }				t_pos_index_tarakan;
 
 
-void		parser_lem(t_total_data *data);
-void		parser_links(t_total_data *data, char *str);
 void		push_front(t_total_data *data, int index, t_room *room);
 int			search_room_name(t_total_data *data, char *str);
 char		*search_room_index(t_total_data *data, int index);
@@ -101,13 +98,11 @@ void		print_error(int id);
 void		create_matrix(int ***matrix, int n);
 void		parser_room(t_total_data *data, char *str, int index);
 void		valid(char *str, int flag[2], t_total_data *data, int *i);
-t_lem_list	*get_array_room(t_total_data *data, t_lem_list arr[data->size_matrix]);
 int 		get_num_path(t_total_data *data);
 
 int		djkstra(t_total_data *data);
-void	print_matrix(t_total_data *data);
 void	algorithm(t_total_data *data);
 void	run_ants_new(t_total_data *data, t_path *path);
-int		run(int, char**, t_total_data *data);
+void	freez(t_total_data *data);
 
 #endif

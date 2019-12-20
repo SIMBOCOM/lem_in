@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-void	my_copy(t_room *in, t_room *out)
+void			my_copy(t_room *in, t_room *out)
 {
 	in->name = out->name;
 	in->x = out->x;
@@ -22,7 +22,7 @@ void	my_copy(t_room *in, t_room *out)
 t_lem_list		*lst_create(int index, t_room *room)
 {
 	t_lem_list	*new;
-	
+
 	new = (t_lem_list*)malloc(sizeof(t_lem_list));
 	new->index = index;
 	new->next = NULL;
@@ -30,16 +30,16 @@ t_lem_list		*lst_create(int index, t_room *room)
 	return (new);
 }
 
-void	push_front(t_total_data *data, int index, t_room *room)
+void			push_front(t_total_data *data, int index, t_room *room)
 {
 	t_lem_list *new;
 
 	new = lst_create(index, room);
-	new->next  = data->rooms;
+	new->next = data->rooms;
 	data->rooms = new;
 }
 
-int		search_room_name(t_total_data *data, char *str)
+int				search_room_name(t_total_data *data, char *str)
 {
 	t_lem_list *shift;
 
@@ -52,7 +52,7 @@ int		search_room_name(t_total_data *data, char *str)
 		return (-1);
 }
 
-char	*search_room_index(t_total_data *data, int index)
+char			*search_room_index(t_total_data *data, int index)
 {
 	t_lem_list *shift;
 
