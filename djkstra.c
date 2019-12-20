@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-void	start_djkstra(t_total_data *data, int *used)
+void		start_djkstra(t_total_data *data, int *used)
 {
 	int i;
 
@@ -24,42 +24,47 @@ void	start_djkstra(t_total_data *data, int *used)
 	}
 }
 
-int		djkstra(t_total_data *data)
+void		djkstra_push_node(t_total_data *dat, int u)
 {
-	int used[data->size_matrix];
-	int n;
-	int u;
 	int i;
-	int it;
 
-	
-	it = -1;
-	n = data->size_matrix;
-	start_djkstra(data, used);
-	data->dist[data->start].distance = 0;
-	while (++it < n)
-	{
-		int u = -1;
-		i = -1;
-		while (++i < n)
-			if (!used[i] && (u == -1 || data->dist[i].distance < data->dist[u].distance))
-				u = i;
-		if (data->dist[u].distance == INT_MAX)
-			break;
-		used[u] = 1;
-		i = -1;
-		while (++i < n)
-			if(data->matrix[u][i] != 0 && data->matrix[u][i] != -1 && data->dist[u].distance + data->matrix[u][i] < data->dist[i].distance)
-			{
-				data->dist[i].distance = data->dist[u].distance + data->matrix[u][i];
-				data->dist[i].index_parent = u;
-			}
-	}
-	return (data->dist[data->end].distance == INT_MAX ? 0 : 1);
-
+	i = -1;
+	while (++i < dat->size_matrix)
+		if (dat->matrix[u][i] != 0 && dat->matrix[u][i] != -1
+		&& dat->dist[u].distance + dat->matrix[u][i] < dat->dist[i].distance)
+		{
+			dat->dist[i].distance = dat->dist[u].distance + dat->matrix[u][i];
+			dat->dist[i].index_parent = u;
+		}
 }
 
-void	get_cross(t_total_data *data)
+int			djkstra(t_total_data *data)
+{
+	int used[data->size_matrix];
+	int i;
+	int it;
+	int u;
+
+	it = -1;
+	start_djkstra(data, used);
+	data->dist[data->start].distance = 0;
+	while (++it < data->size_matrix)
+	{
+		u = -1;
+		i = -1;
+		while (++i < data->size_matrix)
+			if (!used[i] && (u == -1 ||
+			data->dist[i].distance < data->dist[u].distance))
+				u = i;
+		if (data->dist[u].distance == INT_MAX)
+			break ;
+		used[u] = 1;
+		djkstra_push_node(data, u);
+	}
+	return (data->dist[data->end].distance == INT_MAX ? 0 : 1);
+}
+
+void		get_cross(t_total_data *data)
 {
 	int i;
 	int j;
@@ -79,7 +84,7 @@ void	get_cross(t_total_data *data)
 	}
 }
 
-void	reverse_ones(t_total_data *data)
+void		reverse_ones(t_total_data *data)
 {
 	int i;
 	int j;
@@ -94,7 +99,7 @@ void	reverse_ones(t_total_data *data)
 	}
 }
 
-void	push_null_matrix(t_total_data *data)
+void		push_null_matrix(t_total_data *data)
 {
 	int i;
 
@@ -108,7 +113,7 @@ void	push_null_matrix(t_total_data *data)
 	}
 }
 
-void	reverse_matrix(t_total_data *data, int size, int u, t_path *path)
+void		reverse_matrix(t_total_data *data, int size, int u, t_path *path)
 {
 	int i;
 	int temp;
@@ -125,9 +130,8 @@ void	reverse_matrix(t_total_data *data, int size, int u, t_path *path)
 	}
 }
 
-void	push_matrix_path(t_total_data *data, t_path *path)
+void		push_matrix_path(t_total_data *data, t_path *path)
 {
-	int temp[data->size_matrix];
 	int i;
 	int shift;
 
@@ -146,7 +150,7 @@ void	push_matrix_path(t_total_data *data, t_path *path)
 	}
 }
 
-void	delete_node(t_total_data *data, t_path *path)
+void		delete_node(t_total_data *data, t_path *path)
 {
 	int i;
 	int j;
@@ -163,7 +167,7 @@ void	delete_node(t_total_data *data, t_path *path)
 	}
 }
 
-int 	get_num_path(t_total_data *data)
+int			get_num_path(t_total_data *data)
 {
 	int i;
 	int num;
@@ -176,7 +180,7 @@ int 	get_num_path(t_total_data *data)
 	return (num);
 }
 
-void	search_path_first(t_total_data *data)
+void		search_path_first(t_total_data *data)
 {
 	int size;
 	int i;
@@ -185,7 +189,8 @@ void	search_path_first(t_total_data *data)
 	data->path_first.matrix_path = (int**)malloc(sizeof(int*) * size);
 	i = -1;
 	while (++i < size)
-		data->path_first.matrix_path[i] = (int*)malloc(sizeof(int) * data->size_matrix);
+		data->path_first.matrix_path[i] =
+				(int*)malloc(sizeof(int) * data->size_matrix);
 	data->path_first.numb_path = 0;
 	while (djkstra(data))
 	{
@@ -196,7 +201,7 @@ void	search_path_first(t_total_data *data)
 	}
 }
 
-void search_path_second(t_total_data *data)
+void		search_path_second(t_total_data *data)
 {
 	int size;
 	int i;
@@ -205,7 +210,8 @@ void search_path_second(t_total_data *data)
 	data->path_second.matrix_path = (int**)malloc(sizeof(int*) * size);
 	i = -1;
 	while (++i < size)
-		data->path_second.matrix_path[i] = (int*)malloc(sizeof(int) * data->size_matrix);
+		data->path_second.matrix_path[i] =
+				(int*)malloc(sizeof(int) * data->size_matrix);
 	data->path_second.numb_path = 0;
 	while (djkstra(data))
 		push_null_matrix(data);
@@ -220,7 +226,7 @@ void search_path_second(t_total_data *data)
 	}
 }
 
-void	copy_matrix(int **first, int **second, int size)
+void		copy_matrix(int **first, int **second, int size)
 {
 	int i;
 	int j;
@@ -234,7 +240,7 @@ void	copy_matrix(int **first, int **second, int size)
 	}
 }
 
-int		**copy_create_matrix(int n, int **matrix)
+int			**copy_create_matrix(int n, int **matrix)
 {
 	int **new_matrix;
 	int i;
@@ -247,7 +253,7 @@ int		**copy_create_matrix(int n, int **matrix)
 	{
 		if (!(new_matrix[i] = malloc(sizeof(int) * n)))
 			print_error(E_MALLOC);
-			j = -1;
+		j = -1;
 		while (++j < n)
 			new_matrix[i][j] = matrix[i][j];
 	}
@@ -273,7 +279,7 @@ void		length_roads(t_total_data *data, t_path *path)
 	}
 }
 
-void	tarakan_create(t_total_data *data, t_path *path)
+void		tarakan_create(t_total_data *data, t_path *path)
 {
 	int i;
 	int j;
@@ -291,7 +297,8 @@ void	tarakan_create(t_total_data *data, t_path *path)
 			return ;
 		}
 		while (++j < path->numb_path)
-			if (!(i % path->tarakan[j].size_of_road) || path->tarakan[j].size_of_tarakan)
+			if (!(i % path->tarakan[j].size_of_road)
+			|| path->tarakan[j].size_of_tarakan)
 			{
 				path->tarakan[j].size_of_tarakan++;
 				ants_count--;
@@ -299,7 +306,7 @@ void	tarakan_create(t_total_data *data, t_path *path)
 	}
 }
 
-void	algorithm(t_total_data *data)
+void		algorithm(t_total_data *data)
 {
 	int **matrix_save;
 
@@ -313,14 +320,29 @@ void	algorithm(t_total_data *data)
 	tarakan_create(data, &(data->path_second));
 	tarakan_create(data, &(data->path_first));
 	if (data->path_first.size_of_step >= data->path_second.size_of_step)
-		run_ants_new(data, &(data->path_second));
+		run_ants(data, &(data->path_second));
 	else
-		run_ants_new(data, &(data->path_first));
+		run_ants(data, &(data->path_first));
 	freez(data);
 }
 
-void	print_one_step_new(t_total_data *data, int count,
-				t_path *path, t_pos_index_tarakan	*ants_finall)
+void		init_road(int i, t_path *path, t_pos_index_tarakan *ants_finall)
+{
+	if (ants_finall[i].num_road == -1)
+	{
+		if (path->tarakan[i % path->numb_path].size_of_tarakan)
+		{
+			ants_finall[i].num_road = i % path->numb_path;
+			path->tarakan[i % path->numb_path].size_of_tarakan--;
+			if (path->numb_path != 1
+				&& !path->tarakan[i % path->numb_path].size_of_tarakan)
+				path->numb_path--;
+		}
+	}
+}
+
+void		print_one_step(t_total_data *data, int count,
+				t_path *path, t_pos_index_tarakan *ants_finall)
 {
 	int i;
 	int flag;
@@ -329,49 +351,50 @@ void	print_one_step_new(t_total_data *data, int count,
 	flag = 0;
 	while (++i < count)
 	{
-		if (ants_finall[i].num_road == -1)
-		{
-			if (path->tarakan[i % path->numb_path].size_of_tarakan)
-			{
-				ants_finall[i].num_road = i % path->numb_path;
-				path->tarakan[i % path->numb_path].size_of_tarakan--;
-				if (path->numb_path != 1 && !path->tarakan[i % path->numb_path].size_of_tarakan)
-					path->numb_path--;
-			}
-		}
+		init_road(i, path, ants_finall);
 		if (ants_finall[i].index != -1)
 		{
 			if (flag)
 				write(1, " ", 1);
-			ft_printf("L%d-%s", i + 1, search_room_index(data, path->matrix_path[ants_finall[i].num_road][ants_finall[i].index]));
+			ft_printf("L%d-%s", i + 1, search_room_index(data,
+			path->matrix_path[ants_finall[i].num_road][ants_finall[i].index]));
 			flag++;
 		}
-		if (path->matrix_path[ants_finall[i].num_road][ants_finall[i].index] == data->end)
-		{
+		if (path->matrix_path[ants_finall[i].num_road][ants_finall[i].index]
+		== data->end)
 			ants_finall[i].index = -1;
-		}
 	}
 	ft_printf("\n");
 }
 
-void	run_ants_new(t_total_data *data, t_path *path)
+void		start_run_ants(t_pos_index_tarakan *ants_finall,
+		t_path *path, t_total_data *data)
+{
+	int i;
+	int numb_path_new;
+
+	i = -1;
+	numb_path_new = path->numb_path;
+	while (++i < path->numb_path)
+		if (!path->tarakan[i].size_of_tarakan)
+			numb_path_new--;
+	path->numb_path = numb_path_new;
+	i = -1;
+	while (++i < data->numb_ants)
+	{
+		ants_finall[i].index = 0;
+		ants_finall[i].num_road = -1;
+	}
+}
+
+void		run_ants(t_total_data *data, t_path *path)
 {
 	int					i;
 	int					j;
 	int					count;
 	t_pos_index_tarakan	ants_finall[data->numb_ants];
 
-	i = -1;
-	int numb_path_new = path->numb_path;
-	for (int z = 0; z < path->numb_path; z++)
-		if (!path->tarakan[z].size_of_tarakan)
-			numb_path_new--;
-	path->numb_path = numb_path_new;
-	while (++i < data->numb_ants)
-	{
-		ants_finall[i].index = 0;
-		ants_finall[i].num_road = -1;
-	}
+	start_run_ants(ants_finall, path, data);
 	count = path->numb_path;
 	if (count > data->numb_ants)
 		count = data->numb_ants;
@@ -382,7 +405,7 @@ void	run_ants_new(t_total_data *data, t_path *path)
 		while (++j < count)
 			if (ants_finall[j].index != -1)
 				ants_finall[j].index++;
-		print_one_step_new(data, count, path, ants_finall);
+		print_one_step(data, count, path, ants_finall);
 		count += path->numb_path;
 		if (count > data->numb_ants)
 			count = data->numb_ants;

@@ -15,8 +15,8 @@
 int main(int argc, char **argv)
 {
 	t_total_data data;
-	data.end = 0;
-	data.start = 0;
+	data.end = -1;
+	data.start = -1;
 	data.size_matrix = 0;
 	data.numb_ants = 0;
 	data.matrix = NULL;

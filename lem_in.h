@@ -97,12 +97,12 @@ void		my_copy(t_room *in, t_room *out);
 void		print_error(int id);
 void		create_matrix(int ***matrix, int n);
 void		parser_room(t_total_data *data, char *str, int index);
-void		valid(char *str, int flag[2], t_total_data *data, int *i);
+void		valid(char *str, t_total_data *data, int *i);
 int 		get_num_path(t_total_data *data);
-
+void	parser_lem(t_total_data *data);
 int		djkstra(t_total_data *data);
 void	algorithm(t_total_data *data);
-void	run_ants_new(t_total_data *data, t_path *path);
+void	run_ants(t_total_data *data, t_path *path);
 void	freez(t_total_data *data);
 
 #endif
