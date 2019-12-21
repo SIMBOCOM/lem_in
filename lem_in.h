@@ -98,5 +98,6 @@ void	algorithm(t_total_data *data);
 void	run_ants(t_total_data *data, t_path *path);
 void	freez(t_total_data *data);
 void	free_matrix(int ***matrix, int size);
+void	print_str(char *str);
 
 #endif

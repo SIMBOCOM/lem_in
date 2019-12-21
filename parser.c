@@ -62,20 +62,23 @@ void	parser_room(t_total_data *data, char *str, int index)
 	t_room		new_room;
 	char		*temp;
 	char		*hel_null;
+	char		*strT;
 
-	if (!(temp = ft_strchr(str, ' ')) || str[0] == 'L')
+	strT = ft_strdup(str);
+	if (!(temp = ft_strchr(strT, ' ')) || strT[0] == 'L')
 		print_error(E_ROOM);
 	*temp++ = 0;
-	new_room.name = ft_strdup(str);
+	new_room.name = ft_strdup(strT);
 	if (!(hel_null = ft_strchr(temp, ' ')))
 		print_error(E_NO_VALID);
 	*hel_null++ = 0;
 	new_room.x = ft_atoi_mod(temp);
 	temp = hel_null;
 	new_room.y = ft_atoi_mod(temp);
-	if (search_room_name(data, str) != -1)
+	if (search_room_name(data, strT) != -1)
 		print_error(E_ROOM);
 	push_front(data, index, &new_room);
+	ft_strdel(&strT);
 }
 
 void	print_str(char *str)

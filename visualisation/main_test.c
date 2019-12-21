@@ -12,6 +12,8 @@
 
 #include "visual_header.h"
 
+SDL_Window *win;
+
 void	create_coord(t_total_data *data)
 {
 	double	angle;
@@ -23,23 +25,25 @@ void	create_coord(t_total_data *data)
 	shift = data->rooms;
 	angle = 0;
 	ang_shift = (double)360 / (double)data->size_matrix;
-	ft_printf("shift = %lf\n", ang_shift);
 	while (shift)
 	{
 		shift->room.x = (50 / 2) * cos(angle*M_PI/180);
 		shift->room.y = (50 / 2) * sin(angle*M_PI/180);
-		ft_printf("x = %lf\n", angle);
-		ft_printf("y = %lf\n\n", M_PI);
 		angle += ang_shift;
 		shift = shift->next;
 	}
 }
 
-void loadTexture(t_texture* inputTexture, const char* pathToTexture, GLint textureFiltration)
+void	loadTexture(t_texture* inputTexture, const char* pathToTexture, GLint textureFiltration)
 {
 	SDL_Surface* surface;
 	surface = IMG_Load(pathToTexture);
 
+	if (surface==NULL)
+	{
+		printf("Texture load error %d\n", SDL_GetError());
+		return;
+	}
 	Uint32 colorkey = SDL_MapRGB( surface->format, 255, 30, 255);
 	SDL_SetColorKey( surface, SDL_TRUE | SDL_RLEACCEL, colorkey);
 	glGenTextures(1,&inputTexture->tex);
@@ -51,19 +55,19 @@ void loadTexture(t_texture* inputTexture, const char* pathToTexture, GLint textu
 	SDL_FreeSurface(surface);
 }
 
-void initGLandSDL(SDL_Window **win)
+void	initGLandSDL()
 {
 	if ( SDL_Init(SDL_INIT_EVERYTHING) < 0 )
 	{
 		printf("Unable to init SDL, error: ");
 		exit(1);
 	}
-	*win = SDL_CreateWindow("Some cool visualization.",
+	win = SDL_CreateWindow("Some cool visualization.",
 							SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 							WIDTH, HEIGHT,
 							SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
-	SDL_GLContext glcontext = SDL_GL_CreateContext(*win); // создаем контекст OpenGL
-	if(*win == NULL)
+	SDL_GLContext glcontext = SDL_GL_CreateContext(win); // создаем контекст OpenGL
+	if(win == NULL)
 	{
 		printf("Unable to create window: ");
 		exit(1);
@@ -76,27 +80,30 @@ void initGLandSDL(SDL_Window **win)
 	glLoadIdentity();
 }
 
+void	draw_polygon(int x, int y)
+{
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0.0f, 0.0f);
+	glVertex2f(-x, y);    // Низ лево
+	glTexCoord2f(1.0f, 0.0f);
+	glVertex2f( x,  y);    // Низ право
+	glTexCoord2f(1.0f, 1.0f);
+	glVertex2f(x, -y);    // Верх право
+	glTexCoord2f(0.0f, 1.0f);
+	glVertex2f( -x, -y);    // Верх лево
+	glEnd();
+}
 
-
-void draw_graph(t_total_data *data, t_texture tex)
+void	draw_graph_line(t_total_data *data)
 {
 	int i;
 	int j;
-
-	t_lem_list *shift = data->rooms;
-
-	i = -1;
-	glPointSize(7);
-
-	i = -1;
-	glClear(GL_COLOR_BUFFER_BIT);
-	glBindTexture(GL_TEXTURE_2D, 0);
-	glColor4f(1.0f, 1.0f,1.0f, 1.0f);
-	glBegin(GL_LINES);
-
 	t_lem_list *temp_i;
 	t_lem_list *temp_j;
 
+	i = -1;
+	glColor4f(1.0f, 1.0f,1.0f, 1.0f);
+	glBegin(GL_LINES);
 	while (++i < data->size_matrix)
 	{
 		j = -1;
@@ -112,48 +119,53 @@ void draw_graph(t_total_data *data, t_texture tex)
 		}
 	}
 	glEnd();
+}
 
-	glBindTexture(GL_TEXTURE_2D, tex.tex);
+void	draw_graph_room(t_total_data *data, t_texture *texture)
+{
+	t_lem_list *shift = data->rooms;
 
+	glBindTexture(GL_TEXTURE_2D, texture[2].tex);
 	while (shift)
 	{
 		if (search_room_index(data, data->start) == shift->room.name)
-		{
-			t_texture tex_start;
-			loadTexture(&tex_start, "starter.png", GL_NEAREST);
-			glBindTexture(GL_TEXTURE_2D, tex_start.tex);
-		}
+			glBindTexture(GL_TEXTURE_2D, texture[0].tex);
 		if (search_room_index(data, data->end) == shift->room.name)
-		{
-			t_texture tex_end;
-			loadTexture(&tex_end, "exiter.png", GL_NEAREST);
-			glBindTexture(GL_TEXTURE_2D, tex_end.tex);
-		}
+			glBindTexture(GL_TEXTURE_2D, texture[1].tex);
 		glPushMatrix();
 		glTranslatef(shift->room.x, shift->room.y, 0.0f);
-		glBegin(GL_POLYGON);
-		glTexCoord2f(0.0f, 0.0f);
-		glVertex2f(-2.5, 2);    // Низ лево
-		glTexCoord2f(1.0f, 0.0f);
-		glVertex2f( 2.5,  2);    // Низ право
-		glTexCoord2f(1.0f, 1.0f);
-		glVertex2f(2.5, -2);    // Верх право
-		glTexCoord2f(0.0f, 1.0f);
-		glVertex2f( -2.5, -2);    // Верх лево
-		glEnd();
+		draw_polygon((double)2.5, (double)2);
 		glPopMatrix();
 		shift = shift->next;
-		glBindTexture(GL_TEXTURE_2D, tex.tex);
+		glBindTexture(GL_TEXTURE_2D, texture[2].tex);
 	}
-
 }
 
-t_vec2  lerpvec2(t_vec2 source, t_vec2 target, float t)
+void	draw_graph(t_total_data *data, t_texture *texture)
 {
-	return ((t_vec2){(1.0f - t) * source.x + t * target.x, (1.0f - t) * source.y + t * target.y});
+	glClear(GL_COLOR_BUFFER_BIT);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	draw_graph_line(data);
+	draw_graph_room(data, texture);
 }
 
-char 	*search_room_vector(char *str, char **arr2, t_total_data *data)
+t_vec2	lerpvec2(t_total_data *data, float t, t_vec *tmp_rooms)
+{
+	t_room *start_vector;
+	t_room *end_vector;
+	t_vec2 a;
+	t_vec2 b;
+	float angle;
+
+	start_vector = search_room_name_elem(data, tmp_rooms->a);
+	end_vector = search_room_name_elem(data, tmp_rooms->b);
+	a = (t_vec2){(float)start_vector->x, (float)start_vector->y, 0};
+	b = (t_vec2){(float)end_vector->x, (float)end_vector->y, 0};
+	angle = atan2f(end_vector->x - start_vector->x, end_vector->y - start_vector->y);
+	return ((t_vec2){(1.0f - t) * a.x + t * b.x, (1.0f - t) * a.y + t * b.y, angle});
+}
+
+char	*search_room_vector(char *str, char **arr2, t_total_data *data)
 {
 	int i;
 	char *tmp;
@@ -174,20 +186,16 @@ char 	*search_room_vector(char *str, char **arr2, t_total_data *data)
 	return (search_room_index(data, data->start));
 }
 
-int		create_rooms_vector(t_vec **rooms, char *str, char *prev, t_total_data *data)
+void	push_coord_ants(t_vec **rooms, char *str)
 {
 	char **arr;
-	char **arr2;
 	char *tmp;
-	t_vec *tmp_rooms;
 	int i;
+	t_vec *tmp_rooms;
 
-	i = -1;
-	if (!(*rooms = malloc(sizeof(t_vec))))
-		print_error(E_MALLOC);
 	tmp_rooms = *rooms;
+	i = -1;
 	arr = ft_strsplit(str, ' ');
-	arr2 = ft_strsplit(prev, ' ');
 	while (arr[++i])
 	{
 		tmp = ft_strchr(arr[i], '-');
@@ -204,92 +212,83 @@ int		create_rooms_vector(t_vec **rooms, char *str, char *prev, t_total_data *dat
 			tmp_rooms->next = NULL;
 		tmp_rooms = tmp_rooms->next;
 	}
+}
+
+void	create_rooms_vector(t_vec **rooms, char *str, char *prev, t_total_data *data)
+{
+	char **arr2;
+	t_vec *tmp_rooms;
+
+	if (!(*rooms = malloc(sizeof(t_vec))))
+		print_error(E_MALLOC);
 	tmp_rooms = *rooms;
+	push_coord_ants(rooms, str);
+	arr2 = ft_strsplit(prev, ' ');
 	while (tmp_rooms)
 	{
 		tmp_rooms->a = search_room_vector(tmp_rooms->ant, arr2, data);
 		tmp_rooms = tmp_rooms->next;
 	}
-	return (1);
 }
 
-void	ants_start(t_total_data *data, char *str, char **prev, SDL_Window *win, t_texture tex1)
+void	vis_ants_run(t_total_data *data, t_texture *texture, t_vec *rooms)
 {
-	char *new = ft_strdup(str);
-	t_vec *rooms;
+	float t;
+	t_vec2 c;
 	t_vec *tmp_rooms;
 
-	rooms = NULL;
-	create_rooms_vector(&rooms, str, *prev, data);
-
-	t_texture tex;
-	loadTexture(&tex, "packman1.png", GL_NEAREST);
-
-	float t = 0.0f;
-	while (1) {
+	t = 0.0f;
+	while (1)
+	{
 		glClear(GL_COLOR_BUFFER_BIT);
-		draw_graph(data, tex1);
-		glBindTexture(GL_TEXTURE_2D, tex.tex);
-		t+= 0.02f;
+		draw_graph(data, texture);
+		glBindTexture(GL_TEXTURE_2D, texture[3].tex);
+		t += 0.02f;
 		if (t > 1.0f)
 			break;
 		tmp_rooms = rooms;
 		while (tmp_rooms)
 		{
-			t_room *start_vector = search_room_name_elem(data, tmp_rooms->a);
-			t_room *end_vector = search_room_name_elem(data, tmp_rooms->b);
-			t_vec2 a = (t_vec2){(float)start_vector->x, (float)start_vector->y};
-			t_vec2 b = (t_vec2){(float)end_vector->x, (float)end_vector->y};
-			t_vec2 c = lerpvec2(a, b, t);
-			float angle = atan2f(end_vector->x - start_vector->x, end_vector->y - start_vector->y);
-			printf("%f\n", angle);
+			c = lerpvec2(data, t, tmp_rooms);
 			glPushMatrix();
 			glTranslatef(c.x, c.y, 0.0f);
-			glRotatef(angle*180/M_PI, 0.0f, 0.0f, -1.0f);
-			glBegin(GL_POLYGON);
-			glTexCoord2f(0.0f, 0.0f);
-			glVertex2f(- 1, 1);    // Низ лево
-			glTexCoord2f(1.0f, 0.0f);
-			glVertex2f( 1,  1);    // Низ право
-			glTexCoord2f(1.0f, 1.0f);
-			glVertex2f(1, -1);    // Верх право
-			glTexCoord2f(0.0f, 1.0f);
-			glVertex2f( - 1, -1);    // Верх лево
-			glEnd();
-//				SDL_GL_SwapWindow(win);
+			glRotatef(c.angle*180/M_PI, 0.0f, 0.0f, -1.0f);
+			draw_polygon((double)1, (double)1);
 			glPopMatrix();
 			tmp_rooms = tmp_rooms->next;
 		}
 		SDL_GL_SwapWindow(win);
-
 	}
+}
 
+void	ants_start(t_total_data *data, char *str, char **prev, t_texture *texture)
+{
+	char *new = ft_strdup(str);
+	t_vec *rooms;
+	t_vec *tmp_rooms;
+
+	ft_printf("%s\n", *prev);
+	rooms = NULL;
+	create_rooms_vector(&rooms, str, *prev, data);
+	vis_ants_run(data, texture, rooms);
 	tmp_rooms = rooms;
 	while (tmp_rooms)
 	{
 		t_room *end_vector = search_room_name_elem(data, tmp_rooms->b);
 		glPushMatrix();
 		glTranslatef(end_vector->x, end_vector->y, 0.0f);
-		glBegin(GL_POLYGON);
-		glTexCoord2f(0.0f, 0.0f);
-		glVertex2f(- 1.5, 1);    // Низ лево
-		glTexCoord2f(1.0f, 0.0f);
-		glVertex2f( 1.5,  1);    // Низ право
-		glTexCoord2f(1.0f, 1.0f);
-		glVertex2f(1.5, -1);    // Верх право
-		glTexCoord2f(0.0f, 1.0f);
-		glVertex2f( -1.5, -1);    // Верх лево
-		glEnd();
+		draw_polygon((double)1.5, (double)1);
 		glPopMatrix();
 		tmp_rooms = tmp_rooms->next;
 	}
 	if (*prev)
 		free(*prev);
 	*prev = ft_strdup(new);
+	ft_printf("%s\n", *prev);
 	free(new);
 }
 
-void	parser_vis(t_total_data *data)
+void	parser_vis(t_total_data *data, t_texture *texture)
 {
 	char	*str;
 	int		i;
@@ -298,9 +297,10 @@ void	parser_vis(t_total_data *data)
 	tmp = NULL;
 	str = 0;
 	i = 0;
-	get_next_line(0, &str);
+	while (get_next_line(0, &str) && str[0] == '#')
+		print_str(str);
 	data->numb_ants = ft_atoi(str);
-	free(str);
+	print_str(str);
 	while (get_next_line(0, &str))
 	{
 		ft_printf("%s$\n", str);
@@ -309,65 +309,79 @@ void	parser_vis(t_total_data *data)
 		else
 			valid(str, data, &i);
 	}
-
 	create_coord(data);
-	SDL_Window *win = NULL;
-	initGLandSDL(&win);
+}
 
-	int running = 1;
+void	parser_ants_run(t_total_data *data, t_texture *texture, char **tmp)
+{
+	char *str;
+
+	str = NULL;
+	draw_graph(data, texture);
+	if (!(get_next_line(0, &str)))
+		return ;
+	if (str[0] == 'L')
+	{
+		ants_start(data, str, tmp, texture);
+		SDL_GL_SwapWindow(win);
+		usleep(100000);
+	}
+	if (str)
+		free(str);
+}
+
+void	work_window(t_total_data *data, t_texture *texture)
+{
+	char *tmp;
+	int antrun;
 	SDL_Event event;
 
-	gluOrtho2D(-WIDTH / 2, WIDTH / 2, -HEIGHT / 2, HEIGHT / 2);
-	glScalef(20.0f, 20.0f, 10.0f);
-
-	int antran = 0;
-	int update = 0;
-	t_texture tex;
-	loadTexture(&tex, "ranger2.png", GL_NEAREST);
-	float t = 0.0f;
-	while (running == 1)
+	antrun = 0;
+	tmp = NULL;
+	parser_vis(data, texture);
+	draw_graph(data, texture);
+	SDL_GL_SwapWindow(win);
+	while (1)
 	{
-//		glClear(GL_COLOR_BUFFER_BIT);
-		draw_graph(data, tex);
-		if (antran)
+		if (antrun)
+			parser_ants_run(data, texture, &tmp);
+		if (SDL_PollEvent(&event))
 		{
-			get_next_line(0, &str);
-			if (str[0] == 'L')
-			{
-				ants_start(data, str, &tmp, win, tex);
-				update = 0;
-			}
-		}
-		if (SDL_PollEvent(&event)) {
-			switch (event.type) {
-				case SDL_QUIT:
-					running = 0;
+			if (event.type == SDL_QUIT)
 					break;
-				case SDL_MOUSEBUTTONDOWN:
-					antran = 1;
-					break;
-			}
-		}
-		if (!update)
-		{
-			SDL_GL_SwapWindow(win);
-			update = 1;
-			usleep(1000000);
+			if (event.type == SDL_MOUSEBUTTONDOWN)
+				antrun = !antrun;
 		}
 	}
 }
 
+void	vis_load_texture(t_texture *texture)
+{
+	loadTexture(texture, "pictures/starter.png", GL_NEAREST);
+	loadTexture(texture + 1, "pictures/exiter.png", GL_NEAREST);
+	loadTexture(texture + 2, "pictures/ranger2.png", GL_NEAREST);
+	loadTexture(texture + 3, "pictures/packman1.png", GL_NEAREST);
+}
+
 int main()
 {
+	t_texture texture[4];
+
+	win = NULL;
+	initGLandSDL(&win);
+	gluOrtho2D(-WIDTH / 2, WIDTH / 2, -HEIGHT / 2, HEIGHT / 2);
+	glScalef(20.0f, 20.0f, 10.0f);
+
 
 	t_total_data data;
-	data.end = 0;
-	data.start = 0;
+	data.end = -1;
+	data.start = -1;
 	data.size_matrix = 0;
 	data.numb_ants = 0;
 	data.matrix = NULL;
 	data.rooms = NULL;
-	parser_vis(&data);
+	vis_load_texture(texture);
+	work_window(&data, texture);
 
 	return (0);
 }

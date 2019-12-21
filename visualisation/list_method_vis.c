@@ -1,7 +1,3 @@
-//
-// Created by Rookwood Thai on 21/12/2019.
-//
-
 #include "visual_header.h"
 
 t_room		*search_room_name_elem(t_total_data *data, char *str)

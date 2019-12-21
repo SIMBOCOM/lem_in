@@ -65,19 +65,22 @@ void	start_end_check(char *str, t_total_data *data, int *i)
 void	valid(char *str, t_total_data *data, int *i)
 {
 	char *tmp;
+	char *strT;
 
-	if (!ft_strlen(str))
+	strT = ft_strdup(str);
+	if (!ft_strlen(strT))
 		print_error(E_NO_VALID);
-	start_end_check(str, data, i);
-	if ((tmp = valid_linker(str)))
+	start_end_check(strT, data, i);
+	if ((tmp = valid_linker(strT)))
 	{
 		if (!data->matrix)
 			data->size_matrix = *i;
-		parse_links(data, str, tmp);
+		parse_links(data, strT, tmp);
 	}
-	else if (!ft_strchr(str, '#'))
+	else if (!ft_strchr(strT, '#'))
 	{
-		parser_room(data, str, *i);
+		parser_room(data, strT, *i);
 		(*i)++;
 	}
+	ft_strdel(&strT);
 }
