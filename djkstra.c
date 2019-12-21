@@ -321,7 +321,6 @@ void		algorithm(t_total_data *data)
 	freez(data);
 }
 
-
 void		init_road(int i, t_path *path, t_pos_index_tarakan *ants_finall)
 {
 	if (ants_finall[i].num_road == -1)

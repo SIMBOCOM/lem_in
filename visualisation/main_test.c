@@ -1,51 +1,44 @@
-#include <SDL.h>
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#include <SDL_image.h>
-#include "../lem_in.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_test.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/21 17:51:29 by rthai             #+#    #+#             */
+/*   Updated: 2019/12/21 17:52:51 by rthai            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-typedef struct s_texture
-{
-	GLuint tex;
-	int w; // Lower
-	int h;
-} t_texture;
+#include "visual_header.h"
 
-typedef struct	s_vec2
+void	create_coord(t_total_data *data)
 {
-	float x;
-	float y;
-}				t_vec2;
-
-typedef struct	s_vec
-{
-	char *ant;
-	char *a;
-	char *b;
-	struct s_vec *next;
-}				t_vec;
-
-t_room		*search_room_name_elem(t_total_data *data, char *str)
-{
+	double	angle;
+	double	ang_shift;
 	t_lem_list *shift;
+	int step;
 
+	step = 0;
 	shift = data->rooms;
-	while (shift && ft_strcmp(shift->room.name, str))
+	angle = 0;
+	ang_shift = (double)360 / (double)data->size_matrix;
+	ft_printf("shift = %lf\n", ang_shift);
+	while (shift)
+	{
+		shift->room.x = (50 / 2) * cos(angle*M_PI/180);
+		shift->room.y = (50 / 2) * sin(angle*M_PI/180);
+		ft_printf("x = %lf\n", angle);
+		ft_printf("y = %lf\n\n", M_PI);
+		angle += ang_shift;
 		shift = shift->next;
-	if (shift)
-		return (&shift->room);
-	else
-		return (NULL);
+	}
 }
 
 void loadTexture(t_texture* inputTexture, const char* pathToTexture, GLint textureFiltration)
 {
-	SDL_Surface* surface = IMG_Load(pathToTexture);
-	if (surface==NULL)
-	{
-		printf("Texture load error %d\n", SDL_GetError());
-		return;
-	}
+	SDL_Surface* surface;
+	surface = IMG_Load(pathToTexture);
 
 	Uint32 colorkey = SDL_MapRGB( surface->format, 255, 30, 255);
 	SDL_SetColorKey( surface, SDL_TRUE | SDL_RLEACCEL, colorkey);
@@ -83,69 +76,7 @@ void initGLandSDL(SDL_Window **win)
 	glLoadIdentity();
 }
 
-t_lem_list *search_room_index_list(t_total_data *data, int index)
-{
-	t_lem_list *shift;
 
-	shift = data->rooms;
-	while (shift && shift->index != index)
-		shift = shift->next;
-	return (shift);
-}
-
-t_min_max	min_max(t_total_data *data)
-{
-	t_lem_list *shift;
-	t_min_max	mm;
-	int min_x;
-	int min_y;
-
-	shift = data->rooms;
-	min_x = shift->room.x;
-	min_y = shift->room.y;
-	mm.midl_x = 0;
-	mm.midl_y = 0;
-	while (shift)
-	{
-//		if (mm.midl_x < shift->room.x)
-//			mm.midl_x = shift->room.x;
-//		if (mm.midl_y < shift->room.y)
-//			mm.midl_y = shift->room.y;
-//		if (min_x > shift->room.x)
-//			min_x = shift->room.x;
-//		if (min_y > shift->room.y)
-//			min_y = shift->room.y;
-		mm.midl_x += shift->room.x;
-		mm.midl_y += shift->room.y;
-		shift = shift->next;
-	}
-	mm.midl_x /= data->size_matrix;
-	mm.midl_y /= data->size_matrix;
-	return (mm);
-}
-
-void	create_coord(t_total_data *data)
-{
-	double	angle;
-	double	ang_shift;
-	t_lem_list *shift;
-	int step;
-
-	step = 0;
-	shift = data->rooms;
-	angle = 0;
-	ang_shift = (double)360 / (double)data->size_matrix;
-	ft_printf("shift = %lf\n", ang_shift);
-	while (shift)
-	{
-		shift->room.x = (50 / 2) * cos(angle*M_PI/180);
-		shift->room.y = (50 / 2) * sin(angle*M_PI/180);
-		ft_printf("x = %lf\n", angle);
-		ft_printf("y = %lf\n\n", M_PI);
-		angle += ang_shift;
-		shift = shift->next;
-	}
-}
 
 void draw_graph(t_total_data *data, t_texture tex)
 {
@@ -232,7 +163,6 @@ char 	*search_room_vector(char *str, char **arr2, t_total_data *data)
 	{
 		tmp = ft_strchr(arr2[i], '-');
 		*(tmp++) = 0;
-//		ft_printf("str =   %s       %s\n", str, arr2[i] + 1);
 		if (!ft_strcmp(str, arr2[i] + 1))
 		{
 			*(--tmp) = '-';
@@ -363,12 +293,8 @@ void	parser_vis(t_total_data *data)
 {
 	char	*str;
 	int		i;
-	int		flag[2];
 	char *tmp;
 
-	ft_printf("midl");
-	flag[0] = 0;
-	flag[1] = 0;
 	tmp = NULL;
 	str = 0;
 	i = 0;
@@ -381,20 +307,9 @@ void	parser_vis(t_total_data *data)
 		if (!ft_strcmp(str, ""))
 			break;
 		else
-			valid(str, flag, data, &i);
+			valid(str, data, &i);
 	}
 
-//	data->mm = min_max(data);
-//	t_lem_list *shift;
-//	shift = data->rooms;
-//
-//	while (shift)
-//	{
-//		shift->room.x += data->mm.midl_x;
-//		shift->room.y += data->mm.midl_y;
-//
-//		shift = shift->next;
-//	}
 	create_coord(data);
 	SDL_Window *win = NULL;
 	initGLandSDL(&win);

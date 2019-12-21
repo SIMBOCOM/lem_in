@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/sdl_hello.dir/list_methods.c.o"
   "CMakeFiles/sdl_hello.dir/parser.c.o"
   "CMakeFiles/sdl_hello.dir/valid.c.o"
+  "CMakeFiles/sdl_hello.dir/visualisation/list_methods.h.c.o"
   "CMakeFiles/sdl_hello.dir/visualisation/main_test.c.o"
   "sdl_hello"
   "sdl_hello.pdb"

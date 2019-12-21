@@ -99,7 +99,13 @@
 		<Unit filename="/Users/rthai/Documents/lem_in/valid.c">
 			<Option target="sdl_hello"/>
 		</Unit>
+		<Unit filename="/Users/rthai/Documents/lem_in/visualisation/list_methods.h.c">
+			<Option target="sdl_hello"/>
+		</Unit>
 		<Unit filename="/Users/rthai/Documents/lem_in/visualisation/main_test.c">
+			<Option target="sdl_hello"/>
+		</Unit>
+		<Unit filename="/Users/rthai/Documents/lem_in/visualisation/visual_header.h">
 			<Option target="sdl_hello"/>
 		</Unit>
 		<Unit filename="/Users/rthai/Documents/lem_in/CMakeLists.txt">

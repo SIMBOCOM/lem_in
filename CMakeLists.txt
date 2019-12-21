@@ -8,7 +8,7 @@ LINK_DIRECTORIES(./ft_printf/)
 include_directories(/Users/flogan/.brew/include/SDL2)
 include_directories(/Users/flogan/.brew/include/SDL2_image)
 add_executable(sdl_hello
-        visualisation/main_test.c parser.c valid.c freez.c list_methods.c djkstra.c)
+        visualisation/main_test.c parser.c valid.c freez.c list_methods.c djkstra.c visualisation/visual_header.h visualisation/list_method_vis.c)
 
 
 find_package(OpenGL REQUIRED)

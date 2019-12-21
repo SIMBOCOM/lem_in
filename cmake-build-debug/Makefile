@@ -258,6 +258,33 @@ valid.c.s:
 	$(MAKE) -f CMakeFiles/sdl_hello.dir/build.make CMakeFiles/sdl_hello.dir/valid.c.s
 .PHONY : valid.c.s
 
+visualisation/list_methods.h.o: visualisation/list_methods.h.c.o
+
+.PHONY : visualisation/list_methods.h.o
+
+# target to build an object file
+visualisation/list_methods.h.c.o:
+	$(MAKE) -f CMakeFiles/sdl_hello.dir/build.make CMakeFiles/sdl_hello.dir/visualisation/list_methods.h.c.o
+.PHONY : visualisation/list_methods.h.c.o
+
+visualisation/list_methods.h.i: visualisation/list_methods.h.c.i
+
+.PHONY : visualisation/list_methods.h.i
+
+# target to preprocess a source file
+visualisation/list_methods.h.c.i:
+	$(MAKE) -f CMakeFiles/sdl_hello.dir/build.make CMakeFiles/sdl_hello.dir/visualisation/list_methods.h.c.i
+.PHONY : visualisation/list_methods.h.c.i
+
+visualisation/list_methods.h.s: visualisation/list_methods.h.c.s
+
+.PHONY : visualisation/list_methods.h.s
+
+# target to generate assembly for a file
+visualisation/list_methods.h.c.s:
+	$(MAKE) -f CMakeFiles/sdl_hello.dir/build.make CMakeFiles/sdl_hello.dir/visualisation/list_methods.h.c.s
+.PHONY : visualisation/list_methods.h.c.s
+
 visualisation/main_test.o: visualisation/main_test.c.o
 
 .PHONY : visualisation/main_test.o
@@ -309,6 +336,9 @@ help:
 	@echo "... valid.o"
 	@echo "... valid.i"
 	@echo "... valid.s"
+	@echo "... visualisation/list_methods.h.o"
+	@echo "... visualisation/list_methods.h.i"
+	@echo "... visualisation/list_methods.h.s"
 	@echo "... visualisation/main_test.o"
 	@echo "... visualisation/main_test.i"
 	@echo "... visualisation/main_test.s"
