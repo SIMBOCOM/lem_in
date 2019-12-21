@@ -43,10 +43,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/flogan/Desktop/lem_in
+CMAKE_SOURCE_DIR = /Users/rthai/Documents/lem_in
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/flogan/Desktop/lem_in/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/rthai/Documents/lem_in/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/sdl_hello.dir/depend.make
@@ -59,81 +59,81 @@ include CMakeFiles/sdl_hello.dir/flags.make
 
 CMakeFiles/sdl_hello.dir/visualisation/main_test.c.o: CMakeFiles/sdl_hello.dir/flags.make
 CMakeFiles/sdl_hello.dir/visualisation/main_test.c.o: ../visualisation/main_test.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/flogan/Desktop/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/sdl_hello.dir/visualisation/main_test.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sdl_hello.dir/visualisation/main_test.c.o   -c /Users/flogan/Desktop/lem_in/visualisation/main_test.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rthai/Documents/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/sdl_hello.dir/visualisation/main_test.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sdl_hello.dir/visualisation/main_test.c.o   -c /Users/rthai/Documents/lem_in/visualisation/main_test.c
 
 CMakeFiles/sdl_hello.dir/visualisation/main_test.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/sdl_hello.dir/visualisation/main_test.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/flogan/Desktop/lem_in/visualisation/main_test.c > CMakeFiles/sdl_hello.dir/visualisation/main_test.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/rthai/Documents/lem_in/visualisation/main_test.c > CMakeFiles/sdl_hello.dir/visualisation/main_test.c.i
 
 CMakeFiles/sdl_hello.dir/visualisation/main_test.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/sdl_hello.dir/visualisation/main_test.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/flogan/Desktop/lem_in/visualisation/main_test.c -o CMakeFiles/sdl_hello.dir/visualisation/main_test.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/rthai/Documents/lem_in/visualisation/main_test.c -o CMakeFiles/sdl_hello.dir/visualisation/main_test.c.s
 
 CMakeFiles/sdl_hello.dir/parser.c.o: CMakeFiles/sdl_hello.dir/flags.make
 CMakeFiles/sdl_hello.dir/parser.c.o: ../parser.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/flogan/Desktop/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/sdl_hello.dir/parser.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sdl_hello.dir/parser.c.o   -c /Users/flogan/Desktop/lem_in/parser.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rthai/Documents/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/sdl_hello.dir/parser.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sdl_hello.dir/parser.c.o   -c /Users/rthai/Documents/lem_in/parser.c
 
 CMakeFiles/sdl_hello.dir/parser.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/sdl_hello.dir/parser.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/flogan/Desktop/lem_in/parser.c > CMakeFiles/sdl_hello.dir/parser.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/rthai/Documents/lem_in/parser.c > CMakeFiles/sdl_hello.dir/parser.c.i
 
 CMakeFiles/sdl_hello.dir/parser.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/sdl_hello.dir/parser.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/flogan/Desktop/lem_in/parser.c -o CMakeFiles/sdl_hello.dir/parser.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/rthai/Documents/lem_in/parser.c -o CMakeFiles/sdl_hello.dir/parser.c.s
 
 CMakeFiles/sdl_hello.dir/valid.c.o: CMakeFiles/sdl_hello.dir/flags.make
 CMakeFiles/sdl_hello.dir/valid.c.o: ../valid.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/flogan/Desktop/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/sdl_hello.dir/valid.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sdl_hello.dir/valid.c.o   -c /Users/flogan/Desktop/lem_in/valid.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rthai/Documents/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/sdl_hello.dir/valid.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sdl_hello.dir/valid.c.o   -c /Users/rthai/Documents/lem_in/valid.c
 
 CMakeFiles/sdl_hello.dir/valid.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/sdl_hello.dir/valid.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/flogan/Desktop/lem_in/valid.c > CMakeFiles/sdl_hello.dir/valid.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/rthai/Documents/lem_in/valid.c > CMakeFiles/sdl_hello.dir/valid.c.i
 
 CMakeFiles/sdl_hello.dir/valid.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/sdl_hello.dir/valid.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/flogan/Desktop/lem_in/valid.c -o CMakeFiles/sdl_hello.dir/valid.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/rthai/Documents/lem_in/valid.c -o CMakeFiles/sdl_hello.dir/valid.c.s
 
 CMakeFiles/sdl_hello.dir/freez.c.o: CMakeFiles/sdl_hello.dir/flags.make
 CMakeFiles/sdl_hello.dir/freez.c.o: ../freez.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/flogan/Desktop/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/sdl_hello.dir/freez.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sdl_hello.dir/freez.c.o   -c /Users/flogan/Desktop/lem_in/freez.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rthai/Documents/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/sdl_hello.dir/freez.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sdl_hello.dir/freez.c.o   -c /Users/rthai/Documents/lem_in/freez.c
 
 CMakeFiles/sdl_hello.dir/freez.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/sdl_hello.dir/freez.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/flogan/Desktop/lem_in/freez.c > CMakeFiles/sdl_hello.dir/freez.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/rthai/Documents/lem_in/freez.c > CMakeFiles/sdl_hello.dir/freez.c.i
 
 CMakeFiles/sdl_hello.dir/freez.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/sdl_hello.dir/freez.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/flogan/Desktop/lem_in/freez.c -o CMakeFiles/sdl_hello.dir/freez.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/rthai/Documents/lem_in/freez.c -o CMakeFiles/sdl_hello.dir/freez.c.s
 
 CMakeFiles/sdl_hello.dir/list_methods.c.o: CMakeFiles/sdl_hello.dir/flags.make
 CMakeFiles/sdl_hello.dir/list_methods.c.o: ../list_methods.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/flogan/Desktop/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/sdl_hello.dir/list_methods.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sdl_hello.dir/list_methods.c.o   -c /Users/flogan/Desktop/lem_in/list_methods.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rthai/Documents/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/sdl_hello.dir/list_methods.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sdl_hello.dir/list_methods.c.o   -c /Users/rthai/Documents/lem_in/list_methods.c
 
 CMakeFiles/sdl_hello.dir/list_methods.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/sdl_hello.dir/list_methods.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/flogan/Desktop/lem_in/list_methods.c > CMakeFiles/sdl_hello.dir/list_methods.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/rthai/Documents/lem_in/list_methods.c > CMakeFiles/sdl_hello.dir/list_methods.c.i
 
 CMakeFiles/sdl_hello.dir/list_methods.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/sdl_hello.dir/list_methods.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/flogan/Desktop/lem_in/list_methods.c -o CMakeFiles/sdl_hello.dir/list_methods.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/rthai/Documents/lem_in/list_methods.c -o CMakeFiles/sdl_hello.dir/list_methods.c.s
 
 CMakeFiles/sdl_hello.dir/djkstra.c.o: CMakeFiles/sdl_hello.dir/flags.make
 CMakeFiles/sdl_hello.dir/djkstra.c.o: ../djkstra.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/flogan/Desktop/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/sdl_hello.dir/djkstra.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sdl_hello.dir/djkstra.c.o   -c /Users/flogan/Desktop/lem_in/djkstra.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/rthai/Documents/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/sdl_hello.dir/djkstra.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/sdl_hello.dir/djkstra.c.o   -c /Users/rthai/Documents/lem_in/djkstra.c
 
 CMakeFiles/sdl_hello.dir/djkstra.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/sdl_hello.dir/djkstra.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/flogan/Desktop/lem_in/djkstra.c > CMakeFiles/sdl_hello.dir/djkstra.c.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/rthai/Documents/lem_in/djkstra.c > CMakeFiles/sdl_hello.dir/djkstra.c.i
 
 CMakeFiles/sdl_hello.dir/djkstra.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/sdl_hello.dir/djkstra.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/flogan/Desktop/lem_in/djkstra.c -o CMakeFiles/sdl_hello.dir/djkstra.c.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/rthai/Documents/lem_in/djkstra.c -o CMakeFiles/sdl_hello.dir/djkstra.c.s
 
 # Object files for target sdl_hello
 sdl_hello_OBJECTS = \
@@ -155,7 +155,7 @@ sdl_hello: CMakeFiles/sdl_hello.dir/list_methods.c.o
 sdl_hello: CMakeFiles/sdl_hello.dir/djkstra.c.o
 sdl_hello: CMakeFiles/sdl_hello.dir/build.make
 sdl_hello: CMakeFiles/sdl_hello.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/flogan/Desktop/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable sdl_hello"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/rthai/Documents/lem_in/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable sdl_hello"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sdl_hello.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -168,6 +168,6 @@ CMakeFiles/sdl_hello.dir/clean:
 .PHONY : CMakeFiles/sdl_hello.dir/clean
 
 CMakeFiles/sdl_hello.dir/depend:
-	cd /Users/flogan/Desktop/lem_in/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/flogan/Desktop/lem_in /Users/flogan/Desktop/lem_in /Users/flogan/Desktop/lem_in/cmake-build-debug /Users/flogan/Desktop/lem_in/cmake-build-debug /Users/flogan/Desktop/lem_in/cmake-build-debug/CMakeFiles/sdl_hello.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/rthai/Documents/lem_in/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/rthai/Documents/lem_in /Users/rthai/Documents/lem_in /Users/rthai/Documents/lem_in/cmake-build-debug /Users/rthai/Documents/lem_in/cmake-build-debug /Users/rthai/Documents/lem_in/cmake-build-debug/CMakeFiles/sdl_hello.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/sdl_hello.dir/depend
 

@@ -14,7 +14,7 @@
 
 void	print_error(int id)
 {
-	ft_printf("%d", id);
+	ft_printf("ERROR: %d", id);
 	exit(id);
 }
 
@@ -41,7 +41,7 @@ int		ft_atoi_mod(const char *str)
 	return ((int)res);
 }
 
-int valid_link(t_total_data *data)
+int		valid_link(t_total_data *data)
 {
 	int i;
 	int j;
@@ -51,7 +51,7 @@ int valid_link(t_total_data *data)
 	{
 		j = -1;
 		while (++j < data->size_matrix)
-			if(data->matrix[i][j])
+			if (data->matrix[i][j])
 				return (1);
 	}
 	return (0);
@@ -73,7 +73,18 @@ void	parser_room(t_total_data *data, char *str, int index)
 	new_room.x = ft_atoi_mod(temp);
 	temp = hel_null;
 	new_room.y = ft_atoi_mod(temp);
+	if (search_room_name(data, str) != -1)
+		print_error(E_ROOM);
 	push_front(data, index, &new_room);
+}
+
+void	print_str(char *str)
+{
+	if (str)
+	{
+		ft_printf("%s\n", str);
+		ft_strdel(&str);
+	}
 }
 
 void	parser_lem(t_total_data *data)
@@ -83,26 +94,26 @@ void	parser_lem(t_total_data *data)
 
 	str = 0;
 	i = 0;
-	get_next_line(0, &str);
-	ft_printf("%s\n", str);
+	while (get_next_line(0, &str) && str[0] == '#')
+		print_str(str);
 	if ((data->numb_ants = ft_atoi_mod(str)) <= 0)
 		print_error(E_ANT);
-	free(str);
+	print_str(str);
 	while (get_next_line(0, &str))
 	{
-		ft_printf("%s\n", str);
 		valid(str, data, &i);
+		print_str(str);
 	}
+	ft_strdel(&str);
 	if (!valid_link(data))
 		return (print_error(E_NO_LINK));
 	write(1, "\n", 1);
 	if (data->start == -1 || data->end == -1)
 		print_error(E_NO_VALID);
 	algorithm(data);
-	free(str);
 }
 
-void	create_matrix(int ***matrix, int n)
+void	create_matrix(int ***matrix, int n, int m)
 {
 	int i;
 
@@ -111,7 +122,7 @@ void	create_matrix(int ***matrix, int n)
 		print_error(E_MALLOC);
 	while (i < n)
 	{
-		if (!((*matrix)[i] = malloc(sizeof(int) * n)))
+		if (!((*matrix)[i] = malloc(sizeof(int) * m)))
 			print_error(E_MALLOC);
 		ft_bzero((*matrix)[i], n * sizeof(int));
 		i++;

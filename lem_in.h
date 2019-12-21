@@ -28,12 +28,6 @@
 # define WIDTH 1600
 # define HEIGHT 1200
 
-typedef struct	s_min_max
-{
-	int midl_x;
-	int midl_y;
-}				t_min_max;
-
 typedef struct	s_room
 {
 	char	*name;
@@ -73,7 +67,6 @@ typedef struct	s_total_data
 	int			end;
 	t_path		path_first;
 	t_path		path_second;
-	t_min_max	mm;
 }				t_total_data;
 
 typedef struct	s_top_djks
@@ -95,7 +88,7 @@ char		*search_room_index(t_total_data *data, int index);
 t_lem_list	*lst_create(int index, t_room *room);
 void		my_copy(t_room *in, t_room *out);
 void		print_error(int id);
-void		create_matrix(int ***matrix, int n);
+void		create_matrix(int ***matrix, int n, int m);
 void		parser_room(t_total_data *data, char *str, int index);
 void		valid(char *str, t_total_data *data, int *i);
 int 		get_num_path(t_total_data *data);
@@ -104,5 +97,6 @@ int		djkstra(t_total_data *data);
 void	algorithm(t_total_data *data);
 void	run_ants(t_total_data *data, t_path *path);
 void	freez(t_total_data *data);
+void	free_matrix(int ***matrix, int size);
 
 #endif

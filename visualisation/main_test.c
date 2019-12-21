@@ -253,7 +253,8 @@ int		create_rooms_vector(t_vec **rooms, char *str, char *prev, t_total_data *dat
 	int i;
 
 	i = -1;
-	*rooms = malloc(sizeof(t_vec));
+	if (!(*rooms = malloc(sizeof(t_vec))))
+		print_error(E_MALLOC);
 	tmp_rooms = *rooms;
 	arr = ft_strsplit(str, ' ');
 	arr2 = ft_strsplit(prev, ' ');
@@ -265,7 +266,10 @@ int		create_rooms_vector(t_vec **rooms, char *str, char *prev, t_total_data *dat
 		tmp_rooms->b = tmp;
 		tmp_rooms->a = NULL;
 		if (arr[i + 1])
-			tmp_rooms->next = malloc(sizeof(t_vec));
+		{
+			if (!(tmp_rooms->next = malloc(sizeof(t_vec))))
+				print_error(E_MALLOC);
+		}
 		else
 			tmp_rooms->next = NULL;
 		tmp_rooms = tmp_rooms->next;

@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/flogan/Desktop/lem_in/cmake-build-debug"/>
+				<Option working_dir="/Users/rthai/Documents/lem_in/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/flogan/Desktop/lem_in/cmake-build-debug"/>
+				<Option working_dir="/Users/rthai/Documents/lem_in/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/flogan/Desktop/lem_in/cmake-build-debug"/>
+				<Option working_dir="/Users/rthai/Documents/lem_in/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="sdl_hello">
-				<Option output="/Users/flogan/Desktop/lem_in/cmake-build-debug/sdl_hello" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/flogan/Desktop/lem_in/cmake-build-debug"/>
+				<Option output="/Users/rthai/Documents/lem_in/cmake-build-debug/sdl_hello" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/rthai/Documents/lem_in/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -54,15 +54,15 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 sdl_hello"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 sdl_hello"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="sdl_hello/fast">
-				<Option output="/Users/flogan/Desktop/lem_in/cmake-build-debug/sdl_hello" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/flogan/Desktop/lem_in/cmake-build-debug"/>
+				<Option output="/Users/rthai/Documents/lem_in/cmake-build-debug/sdl_hello" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/rthai/Documents/lem_in/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -77,32 +77,32 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 sdl_hello/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/flogan/Desktop/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 sdl_hello/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/rthai/Documents/lem_in/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/flogan/Desktop/lem_in/djkstra.c">
+		<Unit filename="/Users/rthai/Documents/lem_in/djkstra.c">
 			<Option target="sdl_hello"/>
 		</Unit>
-		<Unit filename="/Users/flogan/Desktop/lem_in/freez.c">
+		<Unit filename="/Users/rthai/Documents/lem_in/freez.c">
 			<Option target="sdl_hello"/>
 		</Unit>
-		<Unit filename="/Users/flogan/Desktop/lem_in/list_methods.c">
+		<Unit filename="/Users/rthai/Documents/lem_in/list_methods.c">
 			<Option target="sdl_hello"/>
 		</Unit>
-		<Unit filename="/Users/flogan/Desktop/lem_in/parser.c">
+		<Unit filename="/Users/rthai/Documents/lem_in/parser.c">
 			<Option target="sdl_hello"/>
 		</Unit>
-		<Unit filename="/Users/flogan/Desktop/lem_in/valid.c">
+		<Unit filename="/Users/rthai/Documents/lem_in/valid.c">
 			<Option target="sdl_hello"/>
 		</Unit>
-		<Unit filename="/Users/flogan/Desktop/lem_in/visualisation/main_test.c">
+		<Unit filename="/Users/rthai/Documents/lem_in/visualisation/main_test.c">
 			<Option target="sdl_hello"/>
 		</Unit>
-		<Unit filename="/Users/flogan/Desktop/lem_in/CMakeLists.txt">
+		<Unit filename="/Users/rthai/Documents/lem_in/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

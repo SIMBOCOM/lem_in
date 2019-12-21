@@ -23,7 +23,8 @@ t_lem_list		*lst_create(int index, t_room *room)
 {
 	t_lem_list	*new;
 
-	new = (t_lem_list*)malloc(sizeof(t_lem_list));
+	if (!(new = (t_lem_list*)malloc(sizeof(t_lem_list))))
+		print_error(E_MALLOC);
 	new->index = index;
 	new->next = NULL;
 	my_copy(&new->room, room);

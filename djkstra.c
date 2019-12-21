@@ -186,11 +186,7 @@ void		search_path_first(t_total_data *data)
 	int i;
 
 	size = get_num_path(data);
-	data->path_first.matrix_path = (int**)malloc(sizeof(int*) * size);
-	i = -1;
-	while (++i < size)
-		data->path_first.matrix_path[i] =
-				(int*)malloc(sizeof(int) * data->size_matrix);
+	create_matrix(&(data->path_first.matrix_path), size, data->size_matrix);
 	data->path_first.numb_path = 0;
 	while (djkstra(data))
 	{
@@ -207,11 +203,7 @@ void		search_path_second(t_total_data *data)
 	int i;
 
 	size = get_num_path(data);
-	data->path_second.matrix_path = (int**)malloc(sizeof(int*) * size);
-	i = -1;
-	while (++i < size)
-		data->path_second.matrix_path[i] =
-				(int*)malloc(sizeof(int) * data->size_matrix);
+	create_matrix(&data->path_second.matrix_path, size, data->size_matrix);
 	data->path_second.numb_path = 0;
 	while (djkstra(data))
 		push_null_matrix(data);
@@ -267,7 +259,8 @@ void		length_roads(t_total_data *data, t_path *path)
 	int length;
 
 	i = -1;
-	path->tarakan = malloc(sizeof(t_path_tarakan) * path->numb_path);
+	if (!(path->tarakan = malloc(sizeof(t_path_tarakan) * path->numb_path)))
+		print_error(E_MALLOC);
 	while (++i < path->numb_path)
 	{
 		length = 0;
@@ -311,7 +304,8 @@ void		algorithm(t_total_data *data)
 	int **matrix_save;
 
 	matrix_save = copy_create_matrix(data->size_matrix, data->matrix);
-	data->dist = malloc(sizeof(t_top_djks) * data->size_matrix);
+	if (!(data->dist = malloc(sizeof(t_top_djks) * data->size_matrix)))
+		print_error(E_MALLOC);
 	search_path_first(data);
 	if (!data->path_first.numb_path)
 		return (print_error(E_PATH));
@@ -323,8 +317,10 @@ void		algorithm(t_total_data *data)
 		run_ants(data, &(data->path_second));
 	else
 		run_ants(data, &(data->path_first));
+	free_matrix(&matrix_save, data->size_matrix);
 	freez(data);
 }
+
 
 void		init_road(int i, t_path *path, t_pos_index_tarakan *ants_finall)
 {
@@ -360,7 +356,8 @@ void		print_one_step(t_total_data *data, int count,
 			path->matrix_path[ants_finall[i].num_road][ants_finall[i].index]));
 			flag++;
 		}
-		if (path->matrix_path[ants_finall[i].num_road][ants_finall[i].index]
+		if (ants_finall[i].index != -1 &&
+		path->matrix_path[ants_finall[i].num_road][ants_finall[i].index]
 		== data->end)
 			ants_finall[i].index = -1;
 	}
