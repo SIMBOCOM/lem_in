@@ -28,7 +28,7 @@ typedef struct	s_vec
 	struct s_vec *next;
 }				t_vec;
 
-t_lem_list *search_room_index_list(t_total_data *data, int index);
+t_lem_list	*search_room_index_list(t_total_data *data, int index);
 t_room		*search_room_name_elem(t_total_data *data, char *str);
 
 #endif
