@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_test.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rthai <rthai@student.42.fr>                +#+  +:+       +#+        */
+/*   By: flogan <flogan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/21 17:51:29 by rthai             #+#    #+#             */
-/*   Updated: 2019/12/23 14:26:55 by flogan           ###   ########.fr       */
+/*   Created: 2019/11/22 20:31:14 by rthai             #+#    #+#             */
+/*   Updated: 2019/12/23 14:40:24 by flogan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "visual_header.h"
+#include "lem_in.h"
 
 int		main(void)
 {
-	t_texture		texture[4];
-	t_total_data	data;
+	t_total_data data;
 
-	init_vis(&data, texture);
-	vis_load_texture(texture);
-	work_window(&data, texture);
-	return (0);
+	data.end = -1;
+	data.start = -1;
+	data.size_matrix = 0;
+	data.numb_ants = 0;
+	data.matrix = NULL;
+	data.rooms = NULL;
+	parser_lem(&data);
+	algorithm(&data);
 }
