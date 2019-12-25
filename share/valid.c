@@ -50,13 +50,13 @@ void	start_end_check(char *str, t_total_data *data, int *i)
 {
 	if (!ft_strcmp(str, "##start"))
 	{
-		if (data->start != -1)
+		if (data->start != -1 || data->end == *i)
 			print_error(E_START);
 		data->start = *i;
 	}
 	if (!ft_strcmp(str, "##end"))
 	{
-		if (data->end != -1)
+		if (data->end != -1 || data->start == *i)
 			print_error(E_END);
 		data->end = *i;
 	}

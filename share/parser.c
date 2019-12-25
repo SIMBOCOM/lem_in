@@ -36,7 +36,7 @@ void	parser_room(t_total_data *data, char *str, int index)
 	char		*strt;
 
 	strt = ft_strdup(str);
-	if (!(temp = ft_strchr(strt, ' ')) || strt[0] == 'L')
+	if (!(temp = ft_strchr(strt, ' ')) || strt[0] == 'L' || data->matrix)
 		print_error(E_ROOM);
 	*temp++ = 0;
 	new_room.name = ft_strdup(strt);
@@ -61,16 +61,17 @@ void	parser_lem(t_total_data *data)
 	i = 0;
 	while (get_next_line(0, &str) && str[0] == '#' &&
 	ft_strcmp(str, "##start") && ft_strcmp(str, "##end"))
-		print_str(str);
-	if ((data->numb_ants = ft_atoi_mod(str)) <= 0)
+		print_str(&str);
+	if (!str || (data->numb_ants = ft_atoi_mod(str)) <= 0)
 		print_error(E_ANT);
-	print_str(str);
+	print_str(&str);
 	while (get_next_line(0, &str))
 	{
 		valid(str, data, &i);
-		print_str(str);
+		print_str(&str);
 	}
-	ft_strdel(&str);
+	if (str)
+		free(str);
 	if (!valid_link(data))
 		return (print_error(E_NO_LINK));
 	write(1, "\n", 1);

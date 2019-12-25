@@ -41,11 +41,12 @@ int		ft_atoi_mod(const char *str)
 	return ((int)res);
 }
 
-void	print_str(char *str)
+void	print_str(char **str)
 {
-	if (str)
+	if (*str)
 	{
-		ft_printf("%s\n", str);
-		ft_strdel(&str);
+		ft_printf("%s\n", *str);
+		ft_strdel(str);
 	}
+	*str = NULL;
 }

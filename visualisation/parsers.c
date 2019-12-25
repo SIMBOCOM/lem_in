@@ -20,9 +20,9 @@ void	parser_vis(t_total_data *data)
 	str = 0;
 	i = 0;
 	while (get_next_line(0, &str) && str[0] == '#')
-		print_str(str);
+		print_str(&str);
 	data->numb_ants = ft_atoi(str);
-	print_str(str);
+	print_str(&str);
 	while (get_next_line(0, &str))
 	{
 		ft_printf("%s\n", str);
